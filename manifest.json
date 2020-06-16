@@ -3,6 +3,7 @@
   "name": "NexDoor Controller and Configurationn App",
   "icons": [
     {
+      "purpose": "badge",
       "src": "https://nexdoor.github.io/favicon.ico"
     }
   ],
