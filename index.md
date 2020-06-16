@@ -3,15 +3,17 @@
    <head>
       <meta name = "viewport" content = "width = device-width, initial-scale = 1">
 
+	<link rel="manifest" href="/manifest.json">
+
         <!-- for ios 7 style, multi-resolution icon of 152x152 -->
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
         <link rel="apple-touch-icon" href="icon-152.png">
         <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
         <meta name="mobile-web-app-capable" content="yes">
-       <!--
-	 <link rel="shortcut icon" sizes="196x196" href="icon-196.png">
-	-->
+        <link rel="shortcut icon" sizes="196x196" href="icon-196.png">
+        
+        
 
       <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
       <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
