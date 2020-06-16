@@ -89,22 +89,33 @@
          <div data-role = "header">
             <h2>NexDoor Controller</h2>
          </div>
-        <div data-role="header"  data-theme="b"  data-position="fixed" class="ui-title">
 
 -->
-        <div data-role="header"  data-theme="b"  data-position="fixed">
-<a href="#two" class="ui-btn-right ui-btn ui-btn-inline ui-corner-all ui-btn-icon-right ui-icon-gear">
-<h1>&nbsp;</h1>
-<!--
-        	<a href="#two" data-icon="gear" class="ui-btn-right">
--->
-Configure</a>
+        <div data-role="header"  data-theme="b"  data-position="fixed" class="ui-title">
+		<h1>&nbsp;</h1>
+
+        	<a href="#two" data-icon="gear" class="ui-btn-right">Configure</a>
         	
 
         </div> <!-- /header -->       
 
       
-      
+ 
+
+
+
+
+<!--
+
+        <div data-role="header"  data-theme="b" data-position="fixed" class="ui-title">
+        	<a href="#Home" data-icon="delete" id="cancelConfig">Cancel</a>
+        	<h1>&nbsp;</h1>
+        	<a href="#Home" data-icon="check" onclick="doSaveConfig()">Save</a>
+        </div> <!-- /header -->       
+
+
+
+-->     
       
          <div data-role = "main" class = "ui-content">
             <form method = "post" action="#">
@@ -118,7 +129,7 @@ Configure</a>
                 </div>
 
                 <div class="ui-field-contain">
-                    <label name="DeviceStatus" id="DeviceStatus">Device Status.</label>
+                    <label name="DeviceStatus" id="DeviceStatus">Device Status</label>
                 </div>
 
 <!--  for testing login stuff
