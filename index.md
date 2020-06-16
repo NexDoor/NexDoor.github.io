@@ -91,7 +91,7 @@
          </div>
 -->
         <div data-role="header"  data-theme="b"  data-position="fixed" >
-        	<h1></h1>
+        	<h1>&nbsp;</h1>
         	<a href="#two" data-icon="gear" class="ui-btn-right">Configure</a>
         </div> <!-- /header -->       
 
@@ -604,7 +604,7 @@ function PopulateDeviceSelectList(devices)
     // add active devices to the list
     for (i=0; i<NumDevices; i++)
       {
-          if (devices.body[i].online === false)
+          if (devices.body[i].online === true)
           {
                let newOption = new Option(devices.body[i].name, devices.body[i].id);
               $('#selDevice').append(newOption);
