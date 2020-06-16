@@ -9,7 +9,9 @@
         <link rel="apple-touch-icon" href="icon-152.png">
         <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
         <meta name="mobile-web-app-capable" content="yes">
-        <link rel="shortcut icon" sizes="196x196" href="icon-196.png">
+       <!--
+	 <link rel="shortcut icon" sizes="196x196" href="icon-196.png">
+	-->
 
       <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
       <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -124,7 +126,10 @@
                     <label name="DeviceStatus" id="DeviceStatus">Device Status</label>
                 </div>
 
-<input type="button" id="fs" name="fs" />
+        <!-- button for teting things
+        <input type="button" id="tst" name="tst" />
+        -->
+
 
         <div id="dcalc" name="dcalc" class="dcalc">
                     
@@ -563,29 +568,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
     });
     
     
-    $("#fs").on('click', function(){
-    
-        var body = document.documentElement;
-        if (body.requestFullscreen) 
-            {
-                body.requestFullscreen();
-            } 
-        else if (body.webkitrequestFullscreen) 
-            {
-                body.webkitrequestFullscreen();
-            } 
-            
-        else if (body.mozrequestFullscreen) 
-            {
-                body.mozrequestFullscreen();
-            } 
-        else if (body.msrequestFullscreen) 
-            {
-                body.msrequestFullscreen();
-            }
-
-   });
-
+  
 
 
     //  login
