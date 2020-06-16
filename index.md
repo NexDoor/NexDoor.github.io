@@ -99,24 +99,7 @@
 
         </div> <!-- /header -->       
 
-      
- 
-
-
-
-
-<!--
-
-        <div data-role="header"  data-theme="b" data-position="fixed" class="ui-title">
-        	<a href="#Home" data-icon="delete" id="cancelConfig">Cancel</a>
-        	<h1>&nbsp;</h1>
-        	<a href="#Home" data-icon="check" onclick="doSaveConfig()">Save</a>
-        </div> <!-- /header -->       
-
-
-
--->     
-      
+       
          <div data-role = "main" class = "ui-content">
             <form method = "post" action="#">
                
@@ -132,9 +115,7 @@
                     <label name="DeviceStatus" id="DeviceStatus">Device Status</label>
                 </div>
 
-<!--  for testing login stuff
-<input type="button" id="login" name="login" />
--->
+
         <div id="dcalc" name="dcalc" class="dcalc">
                     
                    
