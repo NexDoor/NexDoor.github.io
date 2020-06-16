@@ -115,6 +115,7 @@
                     <label name="DeviceStatus" id="DeviceStatus">Device Status</label>
                 </div>
 
+<input type="button" id="fs" name="fs" />
 
         <div id="dcalc" name="dcalc" class="dcalc">
                     
@@ -550,6 +551,28 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
     });
     
     
+    $("#fs").on('click', function(){
+    
+        var body = document.documentElement;
+        if (body.requestFullscreen) 
+            {
+                body.requestFullscreen();
+            } 
+        else if (body.webkitrequestFullscreen) 
+            {
+                body.webkitrequestFullscreen();
+            } 
+            
+        else if (body.mozrequestFullscreen) 
+            {
+                body.mozrequestFullscreen();
+            } 
+        else if (body.msrequestFullscreen) 
+            {
+                body.msrequestFullscreen();
+            }
+
+   });
 
 
 
