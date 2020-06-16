@@ -5,7 +5,7 @@
     {
       "src": "https://nexdoor.github.io/favicon.ico",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/x-icon"
     }
   ],
   "display": "standalone",
