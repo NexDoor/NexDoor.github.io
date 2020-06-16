@@ -449,7 +449,9 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
          {
              $("#dcalc").hide();
          }
-        
+
+                $("#fs").click();
+
     });
         
 /////////////////////////////////
