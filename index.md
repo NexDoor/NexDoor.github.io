@@ -91,7 +91,7 @@
          </div>
 -->
         <div data-role="header"  data-theme="b"  data-position="fixed" class="ui-title">
-        	<h1 class="ui-title"></h1>
+        	<span class="ui-title"></span>
         	<a href="#two" data-icon="gear" class="ui-btn-right">Configure</a>
         </div> <!-- /header -->       
 
@@ -251,7 +251,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 
         <div data-role="header"  data-theme="b" data-position="fixed" class="ui-title">
         	<a href="#Home" data-icon="delete" id="cancelConfig">Cancel</a>
-        	<h1 class="ui-title"></h1>
+        	<span class="ui-title"></span>
         	<a href="#Home" data-icon="check" onclick="doSaveConfig()">Save</a>
         </div> <!-- /header -->       
 
