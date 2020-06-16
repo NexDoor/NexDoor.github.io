@@ -58,9 +58,9 @@
         <div role="main" class="ui-content">
             <h3>Sign In</h3>
             <label for="txt-email">Email Address</label>
-            <input type="email" name="txt-email" id="txt-email" value="NDParticleDev@gmail.com">
+            <input type="email" name="txt-email" id="txt-email" value="">
             <label for="txt-password">Password</label>
-            <input type="password" name="txt-password" id="txt-password" value="p8rtic1ei0">
+            <input type="password" name="txt-password" id="txt-password" value="">
             <!-- this can be implemented later
             <fieldset data-role="controlgroup">
                 <input type="checkbox" name="chck-rememberme" id="chck-rememberme" checked="">
