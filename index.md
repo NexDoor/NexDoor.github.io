@@ -115,7 +115,7 @@ Configure</a>
                 </div>
 
                 <div class="ui-field-contain">
-                    <label name="DeviceStatus" id="DeviceStatus">Device Status</label>
+                    <label name="DeviceStatus" id="DeviceStatus">Device Status.</label>
                 </div>
 
 <!--  for testing login stuff
