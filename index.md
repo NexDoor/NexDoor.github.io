@@ -251,7 +251,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 
         <div data-role="header"  data-theme="b" data-position="fixed">
         	<a href="#Home" data-icon="delete" id="cancelConfig">Cancel</a>
-        	<h1></h1>
+        	<h1>&nbsp;</h1>
         	<a href="#Home" data-icon="check" onclick="doSaveConfig()">Save</a>
         </div> <!-- /header -->       
 
