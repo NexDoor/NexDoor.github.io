@@ -94,11 +94,12 @@
 -->
         <div data-role="header"  data-theme="b"  data-position="fixed">
 <a href="#two" class="ui-btn-right ui-btn ui-btn-inline ui-corner-all ui-btn-icon-right ui-icon-gear">
+<h1>&nbsp;</h1>
 <!--
         	<a href="#two" data-icon="gear" class="ui-btn-right">
 -->
 Configure</a>
-        	<span class="ui-title"></span>
+        	
 
         </div> <!-- /header -->       
 
@@ -258,7 +259,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 
         <div data-role="header"  data-theme="b" data-position="fixed" class="ui-title">
         	<a href="#Home" data-icon="delete" id="cancelConfig">Cancel</a>
-        	<span class="ui-title"></span>
+        	<h1>&nbsp;</h1>
         	<a href="#Home" data-icon="check" onclick="doSaveConfig()">Save</a>
         </div> <!-- /header -->       
 
