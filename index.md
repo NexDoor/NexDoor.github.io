@@ -2,6 +2,15 @@
 <html>
    <head>
       <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+
+        <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+        <link rel="apple-touch-icon" href="icon-152.png">
+        <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="shortcut icon" sizes="196x196" href="icon-196.png">
+
       <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
       <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -450,7 +459,8 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
              $("#dcalc").hide();
          }
 
-                $("#fs").click();
+         // fall back to this if meta tags dont work from desktop
+        // SetFullScreen();        
 
     });
         
@@ -768,18 +778,35 @@ function PopulateDeviceSelectList(devices)
           }
         
  
-        /*
-        
-        particle.getEventStream({ deviceId: DeviceId, name: "device-config", auth: accessToken}).then(function(stream) {
-          stream.on('event', function(feed) {
-            // insert code to do something with feed.data
-            $("#DeviceStatus").html("Device Config: " + feed.data);
-            //window.alert("Message from Device: "+feed.data);
-          });
-        });
-        
-  */
 
+
+ 
+ // only used if we call from pageload....
+ // first use meta tags... save shortcut to desktop and run from there...
+ // if that does not work, remove the meta tags and aadd a call to this from the page load
+function SetFullScreen()
+    {
+    
+        var body = document.documentElement;
+        if (body.requestFullscreen) 
+            {
+                body.requestFullscreen();
+            } 
+        else if (body.webkitrequestFullscreen) 
+            {
+                body.webkitrequestFullscreen();
+            } 
+            
+        else if (body.mozrequestFullscreen) 
+            {
+                body.mozrequestFullscreen();
+            } 
+        else if (body.msrequestFullscreen) 
+            {
+                body.msrequestFullscreen();
+            }
+
+   };
 
 
 
