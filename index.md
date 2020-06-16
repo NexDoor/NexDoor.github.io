@@ -92,7 +92,12 @@
 -->
         <div data-role="header"  data-theme="b"  data-position="fixed" class="ui-title">
         	<span class="ui-title"></span>
-        	<a href="#two" data-icon="gear" class="ui-btn-right">Configure</a>
+<a href="#" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">
+<!--
+        	<a href="#two" data-icon="gear" class="ui-btn-right">
+-->
+Configure</a>
+
         </div> <!-- /header -->       
 
       
