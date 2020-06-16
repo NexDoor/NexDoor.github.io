@@ -5,12 +5,13 @@
       <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
       <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-        <!-- this fixes issue where button maintains pressed state if validation precents page change -->
+        <!-- this fixes issue where button maintains pressed state if validation precents page change 
         <script type="text/javascript">
             $(document).bind('mobileinit', function () {
                 $.mobile.activeBtnClass = 'aBtnSelector';
             });
         </script>
+-->
 
       <script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
       <script src="//cdn.jsdelivr.net/particle-api-js/6.4.2/particle.min.js" type="text/javascript"></script>
@@ -48,7 +49,42 @@
    
    <body>
 
-      <div data-role = "page" id="Home">
+    
+    <!-- Login Page -->
+      <div data-role = "page" id="Login" data-theme="a">
+       <div data-role="header" data-theme="b">
+            <h1>NexDoor</h1>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <h3>Sign In</h3>
+            <label for="txt-email">Email Address</label>
+            <input type="email" name="txt-email" id="txt-email" value="NDParticleDev@gmail.com">
+            <label for="txt-password">Password</label>
+            <input type="password" name="txt-password" id="txt-password" value="p8rtic1ei0">
+            <!-- this can be implemented later
+            <fieldset data-role="controlgroup">
+                <input type="checkbox" name="chck-rememberme" id="chck-rememberme" checked="">
+                <label for="chck-rememberme">Remember me</label>
+            </fieldset>
+            -->
+            <a href="#" id="btnLogin" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</a>
+
+            <!--
+            <p class="mc-top-margin-1-5"><a href="begin-password-reset.html">Can't access your account?</a></p>
+            -->
+            <div data-role="popup" id="dlg-invalid-credentials" data-dismissible="false" style="max-width:400px;">
+                <div role="main" class="ui-content">
+                    <h3 class="mc-text-danger">Login Failed</h3>
+                    <p>Did you enter the right credentials?</p>
+                    <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                </div>
+            </div>
+        </div><!-- /content -->
+     </div>
+    <!-- End Login Page -->
+     
+
+      <div data-role = "page" id="Home" data-theme="a">
 <!--
          <div data-role = "header">
             <h2>NexDoor Controller</h2>
@@ -70,8 +106,6 @@
                    <label for = "selDevice">Device</label>
                    <select name = "selDevice" id = "selDevice"  class="DeviceSelectionContainer" onchange="isDeviceAvailable(this)" >
             		<option>Select a device...</option>
-            		<option value="e00fce68aee0df9dccb68a76">Argon - 02</option>
-            		<option value="e00fce688d1588846911a3fb">Argon - 03</option>
                    </select>
                 </div>
 
@@ -79,8 +113,13 @@
                     <label name="DeviceStatus" id="DeviceStatus">Device Status</label>
                 </div>
 
-
-                <div id="dcalc" name="dcalc" class="dcalc">
+<!--  for testing login stuff
+<input type="button" id="login" name="login" />
+-->
+        <div id="dcalc" name="dcalc" class="dcalc">
+                    
+                   
+                    
 
                 <div class="containing-element">
                 <div class="ui-field-contain">
@@ -118,7 +157,68 @@
                 </div>
 
 
-                <h1>Status</h1>
+             <!-- weather and AQI -->
+
+                <h3>Weather and AQI from Device</h3>
+                          
+            	<div class="ui-field-contain">
+                   	<!-- Temperature -->
+                       <label for = "lblTemp">Temperature</label>
+                       <input type = "text" name = "lblTemp" id = "lblTemp" readonly >
+                </div>
+            
+            	<div class="ui-field-contain">
+            		<!-- humidity -->
+                       	<label for = "lblHumid">Humidity</label>
+                        <input type = "text" name = "lblHumid" id = "lblHumid" readonly>
+                </div>
+            
+            	<div class="ui-field-contain">
+            		<!-- LstWeatherUpdate -->
+                        <label for = "lblWeatherRefresh">Last Weather Refresh</label>
+                        <input type = "text" name = "lblWeatherRefresh" id = "lblWeatherRefresh" readonly >
+                </div>
+            
+<!--
+these are the styles for AQI
+
+Good  style="background-color:#0C0;color:#000;" 
+Moderate   style="background-color:#FFFF00;color:#000;"
+Unhealthy for Sensitive Groups  style="background-color:#FF9900;color:#000;"
+Unhealthy  style="background-color:#FF0000;color:#FFF;"
+Very Unhealthy  style="background-color:#990066;color:#FFF;"
+Hazzardous   style="background-color:#660000;color:#FFF;"
+
+-->
+            	<div class="ui-field-contain">
+            		<!-- PM25 -->
+                        <label for = "lblPM25">PM 2.5</label>
+                        <input type = "text" name = "lblPM25" id = "lblPM25" readonly value="Good" style="color:white;background:#0C0;">
+                </div>
+            
+            	<div class="ui-field-contain">
+            		<!-- PM10 -->
+                        <label for = "lblPM10">PM 10</label>
+                        <input type = "text" name = "lblPM10" id = "lblPM10" readonly value="Moderate" style="color:white;background:#FFFF00;">
+                </div>
+            
+            	<div class="ui-field-contain">
+            		<!-- Ozone -->
+                        <label for = "lblO3">Ozone</label>
+                        <input type = "text" name = "lblO3" id = "lbl)3" readonly value="Unhealthy" style="color:white;background:#FF0000;">
+                </div>
+            
+            	<div class="ui-field-contain">
+            		<!-- LstAQIUpdate -->
+                        <label for = "lblAQIRefresh">Last AQI Refresh</label>
+                        <input type = "text" name = "lblAQIRefresh" id = "lblAQIRefresh" readonly>
+            
+                </div>
+            
+            <!-- End weather and AQI -->
+
+
+                <h3>Status</h3>
                 
                 <div data-role="tabs" id="tabs">
                   <div data-role="navbar">
@@ -170,6 +270,12 @@
                 </div>
                 </div>
                 
+       
+<div data-role="popup" id="popupConfigRequiredFlds" class="ui-content" style="max-width:280px" data-dismissible="false">
+    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
+<p>Please enter a value for ALL fields.</p>
+</div>
+       
                 
                 <!-- Default Fan Speed -->
                 <div class="ui-field-contain">
@@ -318,13 +424,17 @@
         </div><!-- /page two -->      
 
 
+
+
+
+
         <script>
         
+        var particle = new Particle();
         var accessToken = '';
         var DeviceId = '';
         var DeviceName = '';
-        var particle = new Particle();
-        
+
 /////////////////////////////////
         
 
@@ -336,7 +446,6 @@
           // when form first loads, disable all inputs until user has selected a device, and that device is online.
          if ( $("#selDevice")[0].selectedIndex == 0)
          {
-             $("#dcalc *").prop('disabled',true);
              $("#dcalc").hide();
          }
         
@@ -432,12 +541,79 @@
 
     // Cancel Configuration
     $("#cancelConfig").on('click', function(){
-//    $("#two").on('pagebeforechange', function(){
-      
-      event.preventDefault();
+    // need to reset origianl values to all inputs on config page 
+    
+     // Post config values to cloud
+     callParticle_Func("GetCurrentConfigs","0");
+
+     
     });
+    
+    
 
 
+
+    //  login
+    $("#btnLogin").on('click', function(){
+       // particle.login({username: 'NDParticleDev@gmail.com', password: 'p8rtic1ei0'}).then(
+ 
+        particle.login({username: $("#txt-email").val(), password: $("#txt-password").val()}).then(
+          function(data) {
+            accessToken = data.body.access_token;
+            ListDevices(accessToken)
+          },
+          function (err) {
+            event.preventDefault();
+            $("#dlg-invalid-credentials" ).popup( "open" );
+          }
+        );    
+     
+    });
+    
+
+// list devices
+function ListDevices(accessToken)
+{
+        var devicesPr = particle.listDevices({ auth: accessToken });
+        
+        devicesPr.then(
+          function(devices){
+            PopulateDeviceSelectList(devices);
+            $.mobile.changePage( "#Home", { transition: "slideup", changeHash: false });
+          },
+          function(err) {
+            console.log('List devices call failed: ', err);
+          }
+        );    
+}
+
+
+// add devices to device selection box
+function PopulateDeviceSelectList(devices)
+{
+
+    var NumDevices = Object.keys(devices.body).length;
+    
+    var deviceList = "";
+  
+    // empty select list so we can add current devices
+    $('#selDevice').find('option').remove();  
+    let newOption = new Option("Select a device...", "")
+    $('#selDevice').append(newOption);
+
+    // add active devices to the list
+    for (i=0; i<NumDevices; i++)
+      {
+          if (devices.body[i].online === false)
+          {
+               let newOption = new Option(devices.body[i].name, devices.body[i].id);
+              $('#selDevice').append(newOption);
+          }
+      }
+
+    // need to refresh Jquery Mobile UI      
+    $('selDevice').selectmenu('refresh');
+}
 
 
     // save Configuration Data
@@ -454,6 +630,8 @@
         var debugMode = $("#cbDebugMode").val();
         var DefaultFanSpeed = parseInt($("input[name='rbDefaultFanSpeed']:checked").val(), 10);
         var SystemMode = parseInt($("#cbDeviceMode").val(), 10);
+
+
         
         var configObj = { squareFeetBuildingSize: squareFeetBuildingSize, 
         				numberOfNexDoorFans: numberOfNexDoorFans, 
@@ -468,17 +646,38 @@
                         };
         var myJSON = JSON.stringify(configObj);
 
-        
+    // need to chack for requiered fields here.. if any are blank, then 
+    //  event.preventDefault();
+      // else continue on
 
+        if (isNaN(configObj.squareFeetBuildingSize) ||
+            isNaN(configObj.numberOfNexDoorFans) ||
+            isNaN(configObj.CallWebhookEveryMinutes) ||
+            isNaN(configObj.localTimeZoneOffset) ||
+            configObj.WeatherStation === "Select a weather station..." ||
+            configObj.zipcode === "" ||
+            isNaN(configObj.DefaultFanSpeed))
+            {
+                event.preventDefault();
+                $("#popupConfigRequiredFlds" ).popup( "open" );
+            }
+        else
+        {
        
-    //   window.alert($("input[name='rbDefaultFanSpeed']:checked").val());
-     
-     // Post config values to cloud
-     callParticle_Func("SaveConfigs",myJSON);
-     
+             // Post config values to cloud
+             callParticle_Func("SaveConfigs",myJSON);
+             
+             // the device will send an event that will indicate success or failure...
+             // When we recive the event, all form elemetns will be either updated to match current values
+            // so on failure, the form elements will be reset to actual values on device.
+            
+        }
+
    };
 
          
+        
+        
         
         
         // Check Device Availability
@@ -491,41 +690,37 @@
           
           $("#lblSelectedDevice").html(DeviceName);
           
-          if (obj.selectedIndex == 0)
+          if (obj.selectedIndex === 0)
           {
             DeviceName = "No Device Selected" 
-        $("#dcalc").disabled = 
+            //$("#dcalc").disabled = 
             $("#dcalc *").prop('disabled',true);
         	$("#dcalc").hide();
-        //$('#cb1').button('disable');	
 
             $("#DeviceStatus").html(DeviceName);
             $("#DeviceStatus").css({ 'color': 'black', 'font-size': '100%' });
-          }
-          
-          
-          // need to call particle to get current values for device
-          // testing...
-          // enable form for Argon 3
-          if (DeviceName == "Argon - 03")
+          } 
+          else if (obj.selectedIndex > 0)
           {
             $("#dcalc *").prop('disabled',false);
         	$("#dcalc").show();
-        //$('#cb1').button('enable');	
-
             $("#DeviceStatus").html("Device Ready");
             $("#DeviceStatus").css({ 'color': 'green', 'font-size': '100%' });
-        }
+          }
+          /*
           // if device is not online, or error occurs, disavble rest of form.
           else if (DeviceName != "No Device Selected")
           {
             $("#dcalc *").prop('disabled',true);
         	$("#dcalc").hide();
-        //$('#cb1').button('disable');	
-
+           //$('#cb1').button('disable');	
             $("#DeviceStatus").html("Device Offline");
             $("#DeviceStatus").css({ 'color': 'red', 'font-size': '150%' });
         }
+          */
+        
+        
+        
           
         
             
@@ -548,7 +743,7 @@
           }
         
  
-        
+        /*
         
         particle.getEventStream({ deviceId: DeviceId, name: "device-config", auth: accessToken}).then(function(stream) {
           stream.on('event', function(feed) {
@@ -558,12 +753,13 @@
           });
         });
         
-  
+  */
 
 
 
 
         
         </script>
+      
    </body>
 </html>
