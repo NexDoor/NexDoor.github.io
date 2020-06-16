@@ -89,10 +89,12 @@
          <div data-role = "header">
             <h2>NexDoor Controller</h2>
          </div>
--->
         <div data-role="header"  data-theme="b"  data-position="fixed" class="ui-title">
+
+-->
+        <div data-role="header"  data-theme="b"  data-position="fixed">
         	<span class="ui-title"></span>
-<a href="#" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">
+<a href="#two" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">
 <!--
         	<a href="#two" data-icon="gear" class="ui-btn-right">
 -->
