@@ -1,5 +1,12 @@
 {
   "short_name": "NexDoor Controller",
   "name": "NexDoor Controller and Configurationn App",
+  "icons": [
+    {
+      "src": "https://nexdoor.github.io/fav.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
   "display": "standalone",
 }
