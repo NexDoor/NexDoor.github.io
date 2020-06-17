@@ -116,10 +116,14 @@ https://web.dev/codelab-make-installable/
             </fieldset>
             -->
             <a href="#" id="btnLogin" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</a>
+            
+            <!-- we need to move this exit button into the gear icon in the header -
+            Note that this only works on mobile, need to hide this button on desktop -->
+            <a href="#" id="btnClose" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Close</a>
         
-        <!-- button for teting things --> 
-        <input type="button" id="tst" name="tst"> Exit </button>
-          
+        <!-- button for teting things  
+        <input type="button" id="tst" name="tst"/>
+          -->
 
             <!--
             <p class="mc-top-margin-1-5"><a href="begin-password-reset.html">Can't access your account?</a></p>
@@ -166,7 +170,7 @@ https://web.dev/codelab-make-installable/
                 </div>
 
         <!-- button for teting things -->
-        <input type="button" id="logout" name="logout"> Logout </button>
+        <a href="#" id="btnLogout" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Logout</a>
         
         
         <div id="dcalc" name="dcalc" class="dcalc">
@@ -626,7 +630,8 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 
 
     // test button handler
-    $("#tst").on('click', function(){
+    // onlyworks in mobile.. need to hide that button on desktop 
+    $("#btnClose").on('click', function(){
 
      window.close();
 
@@ -634,9 +639,12 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
     });
 
     // test button handler
-    $("#logout").on('click', function(){
+    $("#btnLogout").on('click', function(){
 
      $.mobile.changePage( "#Login", { transition: "slide", reverse: true, changeHash: false });
+     accessToken = '';
+     DeviceId = '';
+     DeviceName = '';
 
 
      
