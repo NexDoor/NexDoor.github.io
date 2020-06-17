@@ -148,7 +148,7 @@ https://web.dev/codelab-make-installable/
 -->
         <div data-role="header"  data-theme="b"  data-position="fixed" >
         	<h1>&nbsp;</h1>
-        	<a href="#two" data-icon="gear" class="ui-btn-right" data-transition="slide">Configure</a>
+        	<a href="#two" id="two" data-icon="gear" class="ui-btn-right" data-transition="slide">Configure</a>
         </div> <!-- /header -->       
 
       
@@ -661,19 +661,14 @@ $("#btnLogout").on('click', function()
     });
 
 
-$("#Home").on('click', function()
-    {
+
+$(document).on( "pagecontainerchange", function( event, ui )
+{
 
         window.history.forward();
 
-    });
+})
 
-$("#two").on('click', function()
-    {
-
-        window.history.forward();
-
-    });
 
 // list devices
 function ListDevices(accessToken)
