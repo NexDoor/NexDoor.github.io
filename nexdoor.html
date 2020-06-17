@@ -148,7 +148,7 @@ https://web.dev/codelab-make-installable/
 -->
         <div data-role="header"  data-theme="b"  data-position="fixed" >
         	<h1>&nbsp;</h1>
-        	<a href="#two" data-icon="gear" class="ui-btn-right">Configure</a>
+        	<a href="#two" data-icon="gear" class="ui-btn-right" data-transition="slide">Configure</a>
         </div> <!-- /header -->       
 
       
@@ -305,11 +305,11 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
             <label name="lblSelectedDevice" id="lblSelectedDevice">XXXXXXX</label>
         </div>
 
-
+ 
         <div data-role="header"  data-theme="b" data-position="fixed">
-        	<a href="#Home" data-icon="delete" id="cancelConfig">Cancel</a>
+        	<a href="#Home" data-icon="delete" id="cancelConfig" data-transition="slide" data-direction= "reverse">Cancel</a>
         	<h1>&nbsp;</h1>
-        	<a href="#Home" data-icon="check" onclick="doSaveConfig()">Save</a>
+        	<a href="#Home" data-icon="check" onclick="doSaveConfig()"  data-transition="slide" data-direction= "reverse">Save</a>
         </div> <!-- /header -->       
 
 
@@ -629,25 +629,32 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
     
 
 
-    // test button handler
-    // onlyworks in mobile.. need to hide that button on desktop 
-    $("#btnClose").on('click', function(){
+// Close the app...
+// this is not working.. can only close the window that the app opened...
+// need to figure out how to exit the app!
+$("#btnClose").on('click', function()
+    {
 
      window.close();
 
-     
     });
 
-    // test button handler
-    $("#btnLogout").on('click', function(){
+// Logout button handler
+$("#btnLogout").on('click', function()
+    {
 
-     $.mobile.changePage( "#Login", { transition: "slide", reverse: true, changeHash: false });
-     accessToken = '';
-     DeviceId = '';
-     DeviceName = '';
+        // initialize settings
+        accessToken = '';
+        DeviceId = '';
+        DeviceName = '';
 
+        $('#selDevice')[0].selectedIndex = 0;
+        $("#selDevice").selectmenu("refresh");
+        $("#selDevice" ).trigger( "change" );
 
-     
+        // take user to the login screen
+        $.mobile.changePage( "#Login", { transition: "slide", reverse: true, changeHash: false });
+
     });
 
 
