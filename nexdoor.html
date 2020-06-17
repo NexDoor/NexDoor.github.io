@@ -20,6 +20,12 @@
       
 
 
+	<script>
+		$(document).bind("mobileinit", function(){
+			$.mobile.defaultPageTransition = 'slide';
+		});
+	</script>
+	
     	
 
      	<link rel="icon" href="https://nexdoor.github.io/nd2.png">
@@ -111,9 +117,9 @@ https://web.dev/codelab-make-installable/
             -->
             <a href="#" id="btnLogin" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</a>
         
-        <!-- button for teting things 
-        <input type="button" id="tst" name="tst" />
-          -->
+        <!-- button for teting things --> 
+        <input type="button" id="tst" name="tst"> Exit </button>
+          
 
             <!--
             <p class="mc-top-margin-1-5"><a href="begin-password-reset.html">Can't access your account?</a></p>
@@ -160,7 +166,7 @@ https://web.dev/codelab-make-installable/
                 </div>
 
         <!-- button for teting things -->
-        <input type="button" id="tst" name="tst" />
+        <input type="button" id="logout" name="logout"> Logout </button>
         
         
         <div id="dcalc" name="dcalc" class="dcalc">
@@ -495,6 +501,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
              $("#dcalc").hide();
          }
 
+
         // fall back to this if meta tags dont work from desktop
         // SetFullScreen();        
     });
@@ -620,10 +627,17 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 
     // test button handler
     $("#tst").on('click', function(){
-    // need to reset origianl values to all inputs on config page 
-    
-     // Post config values to cloud
+
      window.close();
+
+     
+    });
+
+    // test button handler
+    $("#logout").on('click', function(){
+
+     $.mobile.changePage( "#Login", { transition: "slide", reverse: true, changeHash: false });
+
 
      
     });
@@ -638,7 +652,7 @@ function ListDevices(accessToken)
         devicesPr.then(
           function(devices){
             PopulateDeviceSelectList(devices);
-            $.mobile.changePage( "#Home", { transition: "slideup", changeHash: false });
+            $.mobile.changePage( "#Home", { transition: "slide", changeHash: false });
           },
           function(err) {
             console.log('List devices call failed: ', err);
