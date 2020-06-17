@@ -510,17 +510,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         // SetFullScreen();    
         
         window.history.forward();
-        
-        window.onload = function()
-        {
-            window.history.forward();
-        }
-        
-        window.onunload = function()
-        {
-            null
-        }
-        
+
     });
         
 /////////////////////////////////
@@ -671,6 +661,19 @@ $("#btnLogout").on('click', function()
     });
 
 
+$("#Home").on('click', function()
+    {
+
+        window.history.forward();
+
+    });
+
+$("#two").on('click', function()
+    {
+
+        window.history.forward();
+
+    });
 
 // list devices
 function ListDevices(accessToken)
