@@ -22,7 +22,7 @@
 
     	
 
- 	<link rel="icon" href="https://nexdoor.github.io/nd2.png">
+     	<link rel="icon" href="https://nexdoor.github.io/nd2.png">
 
         <link rel="shortcut icon" href="https://nexdoor.github.io/nd2.png" />
         <!-- for ios 7 style, multi-resolution icon of 152x152 -->
@@ -34,13 +34,29 @@
         <link rel="apple-touch-icon-precomposed" sizes="android-only" href="https://nexdoor.github.io/nd2.png">
 
 
-	<link rel="shortcut icon" sizes="72x72" href="https://nexdoor.github.io/nd3.png"> 
+	    <link rel="shortcut icon" sizes="72x72" href="https://nexdoor.github.io/nd3.png"> 
 
 
         <meta name="mobile-web-app-capable" content="yes">
         <link rel="shortcut icon" href="https://nexdoor.github.io/NexDoor_72.png">
         
-<link rel="manifest" href="https://nexdoor.github.io/manifest.webmanifest">
+        <!-- IMPORTANT... the manifest MUST have .webmanifest extension, and the contents are specific and must be exact!!!-->
+        <link rel="manifest" href="https://nexdoor.github.io/manifest.webmanifest">
+
+<!--
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="shortcut icon" href="https://nexdoor.github.io/NexDoor_72.png">
+        
+more info here on installing as an app
+for Android, aka PWA, or Progressive Web App
+
+https://web.dev/customize-install/
+
+Demo here
+
+https://web.dev/codelab-make-installable/
+
+-->
 
 
 
@@ -79,7 +95,7 @@
     <!-- Login Page -->
       <div data-role = "page" id="Login" data-theme="a">
        <div data-role="header" data-theme="b">
-            <h1>NexDoor</h1>
+            <h1 class="ui-title">NexDoor</h1>
         </div><!-- /header -->
         <div role="main" class="ui-content">
             <h3>Sign In</h3>
@@ -94,6 +110,10 @@
             </fieldset>
             -->
             <a href="#" id="btnLogin" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</a>
+        
+        <!-- button for teting things -->
+        <input type="button" id="tst" name="tst" />
+         <!-- -->
 
             <!--
             <p class="mc-top-margin-1-5"><a href="begin-password-reset.html">Can't access your account?</a></p>
@@ -115,17 +135,15 @@
          <div data-role = "header">
             <h2>NexDoor Controller</h2>
          </div>
-
 -->
-        <div data-role="header"  data-theme="b"  data-position="fixed" class="ui-title">
-		<h1>&nbsp;</h1>
-
+        <div data-role="header"  data-theme="b"  data-position="fixed" >
+        	<h1>&nbsp;</h1>
         	<a href="#two" data-icon="gear" class="ui-btn-right">Configure</a>
-        	
-
         </div> <!-- /header -->       
 
-       
+      
+      
+      
          <div data-role = "main" class = "ui-content">
             <form method = "post" action="#">
                
@@ -144,8 +162,7 @@
         <!-- button for teting things
         <input type="button" id="tst" name="tst" />
         -->
-
-
+        
         <div id="dcalc" name="dcalc" class="dcalc">
                     
                    
@@ -269,7 +286,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
      
             </form>
          </div>
-      </div> <!-- page 1 -->
+      </div> <!-- home page  -->
 
         <!-- Start of second page: #two -->
         <div data-role="page" id="two" data-theme="a">
@@ -279,7 +296,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         </div>
 
 
-        <div data-role="header"  data-theme="b" data-position="fixed" class="ui-title">
+        <div data-role="header"  data-theme="b" data-position="fixed">
         	<a href="#Home" data-icon="delete" id="cancelConfig">Cancel</a>
         	<h1>&nbsp;</h1>
         	<a href="#Home" data-icon="check" onclick="doSaveConfig()">Save</a>
@@ -472,16 +489,14 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 //  $(document).on('pagecreate', function() 
   $(document).on('pageinit', function() 
     {
-        
           // when form first loads, disable all inputs until user has selected a device, and that device is online.
          if ( $("#selDevice")[0].selectedIndex == 0)
          {
              $("#dcalc").hide();
          }
 
-         // fall back to this if meta tags dont work from desktop
+        // fall back to this if meta tags dont work from desktop
         // SetFullScreen();        
-
     });
         
 /////////////////////////////////
@@ -582,10 +597,8 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
      
     });
     
-    
-  
-
-
+ 
+ 
     //  login
     $("#btnLogin").on('click', function(){
        // particle.login({username: 'NDParticleDev@gmail.com', password: 'p8rtic1ei0'}).then(
@@ -603,6 +616,19 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
      
     });
     
+
+
+    // test button handler
+    $("#tst").on('click', function(){
+    // need to reset origianl values to all inputs on config page 
+    
+     // Post config values to cloud
+     window.close();
+
+     
+    });
+
+
 
 // list devices
 function ListDevices(accessToken)
@@ -739,6 +765,18 @@ function PopulateDeviceSelectList(devices)
         	$("#dcalc").show();
             $("#DeviceStatus").html("Device Ready");
             $("#DeviceStatus").css({ 'color': 'green', 'font-size': '100%' });
+            
+            // this captures the events for the selected device
+            particle.getEventStream({ deviceId: DeviceId, name: "device-config", auth: accessToken}).then(function(stream) {
+              stream.on('event', function(feed) {
+                // insert code to do something with feed.data
+                $("#DeviceStatus").html("Device Config: " + feed.data);
+                //window.alert("Message from Device: "+feed.data);
+              });
+            });
+        
+              
+            
           }
           /*
           // if device is not online, or error occurs, disavble rest of form.
@@ -776,12 +814,15 @@ function PopulateDeviceSelectList(devices)
           }
         
  
-
-
- 
  // only used if we call from pageload....
  // first use meta tags... save shortcut to desktop and run from there...
  // if that does not work, remove the meta tags and aadd a call to this from the page load
+ // Mmore info about full screen on mobile devices... 
+ // https://www.creativebloq.com/html5/12-html5-tricks-mobile-81412803
+ // https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
+ // https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API/Guide
+ // for Chrome, we are using the manifest as described in the following link
+ // https://developers.google.com/web/fundamentals/native-hardware/fullscreen
 function SetFullScreen()
     {
     
@@ -790,16 +831,16 @@ function SetFullScreen()
             {
                 body.requestFullscreen();
             } 
-        else if (body.webkitrequestFullscreen) 
+        else if (body.webkitrequestFullscreen) /* Chrome, Safari and Opera */
             {
                 body.webkitrequestFullscreen();
             } 
             
-        else if (body.mozrequestFullscreen) 
+        else if (body.mozrequestFullscreen) /* Firefox */
             {
                 body.mozrequestFullscreen();
             } 
-        else if (body.msrequestFullscreen) 
+        else if (body.msrequestFullscreen) /* IE/Edge */
             {
                 body.msrequestFullscreen();
             }
@@ -808,7 +849,6 @@ function SetFullScreen()
 
 
 
-        
         </script>
       
    </body>
