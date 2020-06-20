@@ -673,10 +673,16 @@ console.log(ui);
 */
 
  $( window ).on( "navigate", function( event, data ){
-    console.log( data.state.info );
-    console.log( data.state.direction );
-    console.log( data.state.url );
-    console.log( data.state.hash );
+
+    if (data.state.direction === 'back')
+    {
+        console.log( data.state.direction );
+        event.preventDefault();
+    }
+    
+    console.log('navigate Event Happened');
+    //console.log( data.state.url );
+    //console.log( data.state.hash );
   });
 
 
