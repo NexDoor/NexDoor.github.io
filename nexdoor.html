@@ -726,6 +726,7 @@ $(document).on("pagecontainerbeforechange", function (e, data)
   if (data.options.direction == "back" || data.options.direction == "forward") 
    {
          console.log("to", data.toPage[0].id);
+        
           if (data.prevPage !== undefined)
           {
            fromPage = '#'+data.prevPage[0].id;
@@ -744,11 +745,16 @@ $(document).on("pagecontainerbeforechange", function (e, data)
            console.log("FORWARD", data.options.reverse);
           }
           
-         data.toPage = fromPage; 
+        // data.toPage = fromPage; 
          //$.mobile.pageContainer.pagecontainer("change", fromPage); 
    }
-});
 
+    if (typeof data.toPage == "string" && data.options.direction == "back") {
+        data.toPage = fromPage; /* redirect to pageY */
+    }
+
+    
+});
 
 
 
