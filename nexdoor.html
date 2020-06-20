@@ -721,25 +721,30 @@ $(document).on("pagecontainerbeforetransition", function(e, data)
 
 $(document).on("pagecontainerbeforechange", function (e, data) 
 {
+      var fromPage = '#login';
+      
   if (data.options.direction == "back" || data.options.direction == "forward") 
    {
- console.log("to", data.toPage[0].id);
-  if (data.prevPage !== undefined)
-  {
-   console.log("from", data.prevPage[0].id);
-  }
-  else{
-    console.log("from nowhere");
-  }
-
-
- if (data.options.reverse === true)
-  {
-   console.log("BACK", data.options.reverse);
-  }
-  else{
-   console.log("FORWARD", data.options.reverse);
-  }
+         console.log("to", data.toPage[0].id);
+          if (data.prevPage !== undefined)
+          {
+           fromPage = '#'+data.prevPage[0].id;
+           console.log("from", fromPage);
+          }
+          else{
+            console.log("from nowhere");
+          }
+        
+        
+         if (data.options.reverse === true)
+          {
+           console.log("BACK", data.options.reverse);
+          }
+          else{
+           console.log("FORWARD", data.options.reverse);
+          }
+          
+         $.mobile.pageContainer.pagecontainer("change", data.prevPage[0].id); 
    }
 });
 
