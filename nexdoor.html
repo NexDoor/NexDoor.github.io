@@ -749,8 +749,8 @@ $(document).on("pagecontainerbeforechange", function (e, data)
          //$.mobile.pageContainer.pagecontainer("change", fromPage); 
    }
 
-    if (typeof data.toPage == "string" && data.options.direction == "back") {
-        data.toPage = fromPage; /* redirect to pageY */
+    if (typeof data.toPage == "string" ) {
+        data.toPage = '#login'; /* redirect to pageY */
     }
 
     
