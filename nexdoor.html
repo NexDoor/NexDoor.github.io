@@ -678,7 +678,8 @@ console.log(ui);
     {
         console.log( data.state.direction );
         event.preventDefault();
-        history.go(1);
+        $.mobile.changePage( data.state.url, {reverse: true, changeHash: true });
+        //history.go(1);
     }
     
     console.log('navigate Event Happened');
