@@ -712,11 +712,6 @@ $(document).on("pagecontainerbeforetransition", function(e, data)
   
 });
 
-*/
-
-
-
-
 
 
 $(document).on("pagecontainerbeforetransition", function (e, data) 
@@ -749,7 +744,7 @@ $(document).on("pagecontainerbeforetransition", function (e, data)
          //$.mobile.pageContainer.pagecontainer("change", fromPage); 
 
     if (typeof data.toPage == "string") {
-        //data.toPage = '#login'; /* redirect to pageY */
+        //data.toPage = '#login';
     e.preventDefault();
     console.log(data.prevPage);
     }
@@ -760,8 +755,32 @@ $(document).on("pagecontainerbeforetransition", function (e, data)
     
 });
 
+*/
 
 
+
+
+
+$(document).on("pagecontainerbeforechange", function (e, data) 
+{
+    if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Home") 
+    {
+        data.toPage = "#Login"; /* redirect to main page */
+    }
+
+    if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "two") 
+    {
+        data.toPage = "#Login"; /* redirect to main page */
+    }
+
+    if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Login") 
+    {
+        data.toPage = "#Login"; /* redirect to main page */
+    }
+    
+    
+}
+);
 
 
 
