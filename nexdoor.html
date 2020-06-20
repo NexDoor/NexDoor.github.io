@@ -747,11 +747,14 @@ $(document).on("pagecontainerbeforechange", function (e, data)
           
         // data.toPage = fromPage; 
          //$.mobile.pageContainer.pagecontainer("change", fromPage); 
+
+    if (typeof data.toPage == "string") {
+        data.toPage = '#login'; /* redirect to pageY */
+    console.log(data.prevPage);
+    }
+
    }
 
-    if (typeof data.toPage == "string" ) {
-        data.toPage = '#login'; /* redirect to pageY */
-    }
 
     
 });
