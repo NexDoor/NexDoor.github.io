@@ -688,23 +688,20 @@ console.log(ui);
     //console.log( data.state.hash );
   });
 
-*/
 
-
-
-
-
-
-
-
-
-$(document).on("pagecontainerbeforetransition", function(e, data) {
-  console.info(e.type, "Object");
-  console.log("toPage", data.toPage);
-  console.log("fromPage", data.fromPage);
-  console.log("absUrl", data.absUrl);
-  console.log("direction", data.direction);
-  console.log("--------------------");
+$(document).on("pagecontainerbeforetransition", function(e, data) 
+{
+  console.log("to", data.toPage[0].id);
+  
+  if (data.prevPage !== undefined)
+  {
+   console.log("from", data.prevPage[0].id);
+  }
+  else{
+    console.log("from nowhere");
+  }  
+  
+  
   
     if (data.direction === 'back')
     {
@@ -715,11 +712,23 @@ $(document).on("pagecontainerbeforetransition", function(e, data) {
   
 });
 
+*/
 
 
 
 
 
+
+$(document).on("pagecontainerbeforechange", function (e, data) 
+{
+  if (data.options.direction == "back" || data.options.direction == "forward") 
+   {
+            console.log(e);
+            console.log(data);
+              event.preventDefault();
+
+   }
+});
 
 
 
