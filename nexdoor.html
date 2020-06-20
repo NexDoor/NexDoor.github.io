@@ -672,13 +672,14 @@ console.log(ui);
 })
 */
 
+/*
  $( window ).on( "navigate", function( event, data ){
 
     if (data.state.direction === 'back')
     {
         console.log( data.state.direction );
         event.preventDefault();
-        $.mobile.changePage( data.state.url, {reverse: true, changeHash: true });
+        $.mobile.changePage( data.state.url, {changeHash: true });
         //history.go(1);
     }
     
@@ -686,6 +687,46 @@ console.log(ui);
     console.log( data.state.url );
     //console.log( data.state.hash );
   });
+
+*/
+
+
+
+
+
+
+
+
+
+$(document).on("pagecontainerbeforetransition", function(e, data) {
+  console.info(e.type, "Object");
+  console.log("toPage", data.toPage);
+  console.log("fromPage", data.fromPage);
+  console.log("absUrl", data.absUrl);
+  console.log("direction", data.direction);
+  console.log("--------------------");
+  
+    if (data.direction === 'back')
+    {
+        console.log( ' ----> BACK <----' );
+        event.preventDefault();
+    }
+  
+  
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // list devices
