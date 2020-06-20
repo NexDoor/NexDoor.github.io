@@ -766,16 +766,19 @@ $(document).on("pagecontainerbeforechange", function (e, data)
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Home") 
     {
         data.toPage = "#Login"; /* redirect to main page */
+        data.options.fromHshChange = true;
     }
 
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "two") 
     {
         data.toPage = "#Login"; /* redirect to main page */
+        data.options.fromHshChange = true;
     }
 
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Login") 
     {
         data.toPage = "#Login"; /* redirect to main page */
+        data.options.fromHshChange = true;
     }
     
     
