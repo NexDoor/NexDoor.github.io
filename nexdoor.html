@@ -64,7 +64,15 @@ https://web.dev/codelab-make-installable/
 
 -->
 
+<script type="text/javascript" >
 
+function preventBack(){window.history.forward();}
+
+setTimeout("preventBack()", 0);
+
+window.onunload=function(){null};
+
+</script>
 
       <style>
          #myspan {
@@ -755,29 +763,31 @@ $(document).on("pagecontainerbeforetransition", function (e, data)
     
 });
 
-*/
 
 
 
 
 
+// this seems to be the best option yet.. but url in address bar is not correct
+// and my cause a problem if user refreshes page.
+// need to find out how to keep the address bar in synch with actual page
 $(document).on("pagecontainerbeforechange", function (e, data) 
 {
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Home") 
     {
-        data.toPage = "#Login"; /* redirect to main page */
+        data.toPage = "#Login"; 
         data.options.fromHshChange = true;
     }
 
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "two") 
     {
-        data.toPage = "#Login"; /* redirect to main page */
+        data.toPage = "#Login"; 
         data.options.fromHshChange = true;
     }
 
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Login") 
     {
-        data.toPage = "#Login"; /* redirect to main page */
+        data.toPage = "#Login"; 
         data.options.fromHshChange = true;
     }
     
@@ -785,7 +795,7 @@ $(document).on("pagecontainerbeforechange", function (e, data)
 }
 );
 
-
+*/
 
 
 
