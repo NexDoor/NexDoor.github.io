@@ -660,14 +660,24 @@ $("#btnLogout").on('click', function()
 
     });
 
-
-
+/*
+// we need to figure out how to prevent going back via the back button.. might need to look at the ui object
+// and comare from and to.... might need to use before chage if one exists.. and prevent default if going backwards
 $(document).on( "pagecontainerchange", function( event, ui )
 {
 
         window.history.forward();
-
+console.log(event);
+console.log(ui);
 })
+*/
+
+ $( window ).on( "navigate", function( event, data ){
+    console.log( data.state.info );
+    console.log( data.state.direction );
+    console.log( data.state.url );
+    console.log( data.state.hash );
+  });
 
 
 // list devices
