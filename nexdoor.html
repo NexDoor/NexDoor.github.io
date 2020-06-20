@@ -744,7 +744,8 @@ $(document).on("pagecontainerbeforechange", function (e, data)
            console.log("FORWARD", data.options.reverse);
           }
           
-         $.mobile.pageContainer.pagecontainer("change", fromPage); 
+         data.toPage = fromPage; 
+         //$.mobile.pageContainer.pagecontainer("change", fromPage); 
    }
 });
 
