@@ -64,15 +64,7 @@ https://web.dev/codelab-make-installable/
 
 -->
 
-<script type="text/javascript" >
 
-function preventBack(){window.history.forward();}
-
-setTimeout("preventBack()", 0);
-
-window.onunload=function(){null};
-
-</script>
 
       <style>
          #myspan {
@@ -763,6 +755,7 @@ $(document).on("pagecontainerbeforetransition", function (e, data)
     
 });
 
+*/
 
 
 
@@ -775,18 +768,21 @@ $(document).on("pagecontainerbeforechange", function (e, data)
 {
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Home") 
     {
+        e.preventDefault();
         data.toPage = "#Login"; 
         data.options.fromHshChange = true;
     }
 
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "two") 
     {
+        e.preventDefault();
         data.toPage = "#Login"; 
         data.options.fromHshChange = true;
     }
 
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Login") 
     {
+        e.preventDefault();
         data.toPage = "#Login"; 
         data.options.fromHshChange = true;
     }
@@ -795,7 +791,6 @@ $(document).on("pagecontainerbeforechange", function (e, data)
 }
 );
 
-*/
 
 
 
