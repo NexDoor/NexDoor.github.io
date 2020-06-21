@@ -16,8 +16,11 @@
 -->
 
       <script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<!--
       <script src="//cdn.jsdelivr.net/particle-api-js/6.4.2/particle.min.js" type="text/javascript"></script>
-      
+-->
+      <script src="https://cdn.jsdelivr.net/npm/particle-api-js@8/dist/particle.min.js" type="text/javascript"></script>
 
 
 	<script>
@@ -140,6 +143,64 @@ https://web.dev/codelab-make-installable/
      </div>
     <!-- End Login Page -->
      
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     <!-- Begin Device Selection Page -->
+      <div data-role = "page" id="SelectDevice" data-theme="a">
+
+        <div data-role="header"  data-theme="b"  data-position="fixed" >
+          <a href="#" id="btnLogout" data-icon="user" class="ui-btn-left" data-transition="slide">Logout</a>        
+          <h1>&nbsp;</h1>
+        	<a href="#" id="refreshDevice" data-icon="refresh" class="ui-btn-right" data-transition="slide">Refresh List</a>
+        </div> <!-- /header -->       
+
+      
+      
+      
+         <div data-role = "main" class = "ui-content">
+            <form method = "post" action="#">
+               
+
+                <div class="ui-field-contain">
+                   <label for = "selDevice">Device</label> 
+                   <select name = "selDevice" id = "selDevice"  class="DeviceSelectionContainer" onchange="isDeviceAvailable(this)" >
+            		<option>Select a device...</option>
+                   </select>
+                </div>
+
+     
+            </form>
+         </div>
+        	<div data-role="footer" data-position="fixed">
+        		<h4>NexDoor</h4>
+        	</div><!-- /footer -->
+         
+      </div> <!-- Device Selection page  -->
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
       <div data-role = "page" id="Home" data-theme="a">
 <!--
@@ -148,6 +209,7 @@ https://web.dev/codelab-make-installable/
          </div>
 -->
         <div data-role="header"  data-theme="b"  data-position="fixed" >
+        	<a href="#" id="btnLogout2" data-icon="user" class="ui-btn-left" data-transition="slide">Logout</a>
         	<h1>&nbsp;</h1>
         	<a href="#two" id="two" data-icon="gear" class="ui-btn-right" data-transition="slide">Configure</a>
         </div> <!-- /header -->       
@@ -159,20 +221,13 @@ https://web.dev/codelab-make-installable/
             <form method = "post" action="#">
                
 
-                <div class="ui-field-contain">
-                   <label for = "selDevice">Device</label>
-                   <select name = "selDevice" id = "selDevice"  class="DeviceSelectionContainer" onchange="isDeviceAvailable(this)" >
-            		<option>Select a device...</option>
-                   </select>
-                </div>
+
 
                 <div class="ui-field-contain">
                     <label name="DeviceStatus" id="DeviceStatus">Device Status</label>
                 </div>
 
-        <!-- button for teting things -->
-        <a href="#" id="btnLogout" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Logout</a>
-        
+
         
         <div id="dcalc" name="dcalc" class="dcalc">
                     
@@ -305,7 +360,22 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
      
             </form>
          </div>
+
+        	<div data-role="footer" data-position="fixed">
+        		<h4>NexDoor</h4>
+        	</div><!-- /footer -->
+         
       </div> <!-- home page  -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
         <!-- Start of second page: #two -->
         <div data-role="page" id="two" data-theme="a">
@@ -495,7 +565,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
             
         	</div><!-- /content -->
         
-        	<div data-role="footer">
+        	<div data-role="footer" data-position="fixed">
         		<h4>NexDoor</h4>
         	</div><!-- /footer -->
         </div><!-- /page two -->      
@@ -661,7 +731,10 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         particle.login({username: $("#txt-email").val(), password: $("#txt-password").val()}).then(
           function(data) {
             accessToken = data.body.access_token;
+            // we are now handling the list devices in the drop dpwn, so after login, go directly to device page
             ListDevices(accessToken)
+            $.mobile.changePage( "#SelectDevice", { transition: "slide", changeHash: true });
+
           },
           function (err) {
             event.preventDefault();
@@ -690,7 +763,12 @@ $("#btnClose").on('click', function()
 // Logout button handler
 $("#btnLogout").on('click', function()
     {
-
+         particle.deleteCurrentAccessToken({ auth: accessToken }).then(function(data) {
+          console.log('Deleted Current Access Token: ', data);
+        }, function(err) {
+          console.log('Error Deleting Access Tokens: ', err);
+        });     
+        
         // initialize settings
         accessToken = '';
         DeviceId = '';
@@ -705,6 +783,15 @@ $("#btnLogout").on('click', function()
         
 
     });
+    
+    
+$("#btnLogout2").on('click', function()
+    {
+
+       $("#btnLogout").trigger("click");
+
+    });
+    
 
 /*
 // we need to figure out how to prevent going back via the back button.. might need to look at the ui object
@@ -873,12 +960,22 @@ $("#dlg1closeBtn").on('click', function(){
 });
 
 
+
 // raise a flag when a dialog was closed, so that we don't trigger a "back" event and end up on the login screem    
 $("#dlg2closeBtn").on('click', function(){
     
   wasClosedDialog = true;
      
 });
+
+
+// laod/refresh the device select list    
+$("#refreshDevice").on('click', function(){
+    
+   ListDevices(accessToken);
+   console.log('Refresh Device');
+});
+
 
 
 // list devices
@@ -889,7 +986,7 @@ function ListDevices(accessToken)
         devicesPr.then(
           function(devices){
             PopulateDeviceSelectList(devices);
-            $.mobile.changePage( "#Home", { transition: "slide", changeHash: true });
+          //  $.mobile.changePage( "#Home", { transition: "slide", changeHash: true });
           },
           function(err) {
             console.log('List devices call failed: ', err);
@@ -922,7 +1019,7 @@ function PopulateDeviceSelectList(devices)
       }
 
     // need to refresh Jquery Mobile UI      
-    $('selDevice').selectmenu('refresh');
+    $('#selDevice').selectmenu('refresh');
 }
 
 
@@ -1018,6 +1115,8 @@ function PopulateDeviceSelectList(devices)
         	$("#dcalc").show();
             $("#DeviceStatus").html("Device Ready");
             $("#DeviceStatus").css({ 'color': 'green', 'font-size': '100%' });
+            
+             $.mobile.changePage( "#Home", { transition: "slide", changeHash: true });
             
             // this captures the events for the selected device
             particle.getEventStream({ deviceId: DeviceId, name: "device-config", auth: accessToken}).then(function(stream) {
