@@ -766,27 +766,33 @@ $(document).on("pagecontainerbeforetransition", function (e, data)
 // need to find out how to keep the address bar in synch with actual page
 $(document).on("pagecontainerbeforechange", function (e, data) 
 {
+    if (typeof data.toPage !== "object") return;
+
+   if (data.options.direction == "back")
+   {
+        data.toPage = $("#Login"); 
+   }
+
+/*
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Home") 
     {
-        e.preventDefault();
-        data.toPage = "#Login"; 
+        data.toPage = $("#Login"); 
         data.options.fromHshChange = true;
+       
     }
 
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "two") 
     {
-        e.preventDefault();
-        data.toPage = "#Login"; 
+        data.toPage = $("#Login"); 
         data.options.fromHshChange = true;
     }
 
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Login") 
     {
-        e.preventDefault();
-        data.toPage = "#Login"; 
+        data.toPage = $("#Login"); 
         data.options.fromHshChange = true;
     }
-    
+  */  
     
 }
 );
