@@ -133,7 +133,7 @@ https://web.dev/codelab-make-installable/
                 <div role="main" class="ui-content">
                     <h3 class="mc-text-danger">Login Failed</h3>
                     <p>Did you enter the right credentials?</p>
-                    <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                    <div class="mc-text-center"><a href="#" id="dlg0closeBtn" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
                 </div>
             </div>
         </div><!-- /content -->
@@ -293,6 +293,14 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
               <p><a href="#two" data-role="button" data-icon="gear">Configure Device</a></p>
                 -->
                 
+                <!-- Popup - Please Select a Device -->
+            <div data-role="popup" id="dlg-select-device" data-dismissible="true" style="max-width:400px;">
+                <div role="main" class="ui-content">
+                    <h3 class="mc-text-danger">Please Select a Device</h3>
+                    <div class="mc-text-center"><a href="#" id="dlg1closeBtn" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                </div>
+            </div>
+
             </div> <!-- end dcalc div -->        
      
             </form>
@@ -328,11 +336,22 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
                 </div>
                 </div>
                 
-       
+<!--       
 <div data-role="popup" id="popupConfigRequiredFlds" class="ui-content" style="max-width:280px" data-dismissible="false">
     <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
 <p>Please enter a value for ALL fields.</p>
 </div>
+-->
+
+            <div data-role="popup" id="dlg-Config-RequiredFlds" data-dismissible="false" style="max-width:400px;">
+                <div role="main" class="ui-content">
+                    <h3 class="mc-text-danger">Please Supply a Value for All Fields</h3>
+                    <div class="mc-text-center"><a href="#" id="dlg2closeBtn" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                </div>
+            </div>
+
+
+       
        
                 
                 <!-- Default Fan Speed -->
@@ -492,6 +511,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         var accessToken = '';
         var DeviceId = '';
         var DeviceName = '';
+        var wasClosedDialog = false;
 
 /////////////////////////////////
         
@@ -592,6 +612,25 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
       }
 
     })
+    
+    
+// Configure Click - Verify a device was selected    
+/////////////////////////////////
+    $('#two').on('click', function() {
+    
+    console.log('Config Checked');
+    
+     if ( $("#selDevice")[0].selectedIndex == 0)
+       {
+         console.log('No Device Selected');
+         event.preventDefault();
+         $("#dlg-select-device" ).popup( "open" );
+       }
+       
+    })
+    
+    
+    
 /////////////////////////////////
 
     // set fan speed
@@ -612,6 +651,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
      
     });
     
+    
  
  
     //  login
@@ -631,6 +671,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
      
     });
     
+
 
 
 // Close the app...
@@ -796,13 +837,47 @@ $(document).on("pagecontainerbeforechange", function (e, data)
 
 // this is not perfect, but is best so far
 $(document).on("pagecontainerbeforechange", function (e, data) {
-    if (typeof data.toPage == "string" && data.options.direction == "back") {
+    if (typeof data.toPage === "string" && data.options.direction === "back" && wasClosedDialog === false) {
         data.toPage = "#Login";
         data.options.transition = "slide";
         data.options.changeHash = false;
         
+        // might need to use history.pushState() here
+        // https://css-tricks.com/using-the-html5-history-api/
+        // since the issue we are having is that the has of the url is not changing to match the actual page we are on
         $("#btnLogout" ).trigger( "click" );
+        
+        // also might want to try this somewhere in this handerl
+        // e.stopPropagation();
+        // and maybe return false ??
     }
+    
+    wasClosedDialog = false;
+});
+
+
+
+// raise a flag when a dialog was closed, so that we don't trigger a "back" event and end up on the login screem    
+$("#dlg0closeBtn").on('click', function(){
+    
+  wasClosedDialog = true;
+     
+});
+
+
+// raise a flag when a dialog was closed, so that we don't trigger a "back" event and end up on the login screem    
+$("#dlg1closeBtn").on('click', function(){
+    
+  wasClosedDialog = true;
+     
+});
+
+
+// raise a flag when a dialog was closed, so that we don't trigger a "back" event and end up on the login screem    
+$("#dlg2closeBtn").on('click', function(){
+    
+  wasClosedDialog = true;
+     
 });
 
 
@@ -894,7 +969,9 @@ function PopulateDeviceSelectList(devices)
             isNaN(configObj.DefaultFanSpeed))
             {
                 event.preventDefault();
-                $("#popupConfigRequiredFlds" ).popup( "open" );
+                //$("#popupConfigRequiredFlds" ).popup( "open" );
+                $("#dlg-Config-RequiredFlds" ).popup( "open" );
+                
             }
         else
         {
