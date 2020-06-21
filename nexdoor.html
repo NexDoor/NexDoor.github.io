@@ -638,7 +638,10 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 $("#btnClose").on('click', function()
     {
 
-     window.close();
+     //window.close();
+             // testing.. remove if this does not exit
+        navigator.app.exitApp();
+
 
     });
 
@@ -657,6 +660,7 @@ $("#btnLogout").on('click', function()
 
         // take user to the login screen
         $.mobile.changePage( "#Login", { transition: "slide", reverse: true, changeHash: true });
+        
 
     });
 
@@ -760,22 +764,14 @@ $(document).on("pagecontainerbeforetransition", function (e, data)
 
 
 
+/*
 
 // this seems to be the best option yet.. but url in address bar is not correct
 // and my cause a problem if user refreshes page.
 // need to find out how to keep the address bar in synch with actual page
 $(document).on("pagecontainerbeforechange", function (e, data) 
 {
-    if (typeof data.toPage !== "object") return;
 
-   if (data.options.direction == "back")
-   {
-        //data.toPage = $("#Login");
-        e.preventDefault();
-         $.mobile.changePage( "#Login", { changeHash: true });
-   }
-
-/*
     if (typeof data.toPage == "string" && data.options.direction == "back" && data.prevPage[0].id == "Home") 
     {
         data.toPage = $("#Login"); 
@@ -794,12 +790,20 @@ $(document).on("pagecontainerbeforechange", function (e, data)
         data.toPage = $("#Login"); 
         data.options.fromHshChange = true;
     }
-  */  
     
 }
 );
+  */  
 
 
+
+$(document).on("pagecontainerbeforechange", function (e, data) {
+    if (typeof data.toPage == "string" && data.options.direction == "back") {
+        data.toPage = "#Login";
+        data.options.transition = "slide";
+        data.options.changeHash = false;
+    }
+});
 
 
 // list devices
@@ -810,7 +814,7 @@ function ListDevices(accessToken)
         devicesPr.then(
           function(devices){
             PopulateDeviceSelectList(devices);
-            $.mobile.changePage( "#Home", { transition: "slide", changeHash: false });
+            $.mobile.changePage( "#Home", { transition: "slide", changeHash: true });
           },
           function(err) {
             console.log('List devices call failed: ', err);
