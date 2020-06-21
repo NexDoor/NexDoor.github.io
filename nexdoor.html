@@ -119,8 +119,9 @@ https://web.dev/codelab-make-installable/
             
             <!-- we need to move this exit button into the gear icon in the header -
             Note that this only works on mobile, need to hide this button on desktop -->
+            <!--  have to try this aftwe we compile with Phone Gap
             <a href="#" id="btnClose" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Close</a>
-        
+          -->
         <!-- button for teting things  
         <input type="button" id="tst" name="tst"/>
           -->
@@ -639,7 +640,7 @@ $("#btnClose").on('click', function()
     {
 
      //window.close();
-             // testing.. remove if this does not exit
+     // the following line should work in PhoneGap
         navigator.app.exitApp();
 
 
@@ -761,9 +762,6 @@ $(document).on("pagecontainerbeforetransition", function (e, data)
 
 */
 
-
-
-
 /*
 
 // this seems to be the best option yet.. but url in address bar is not correct
@@ -796,12 +794,14 @@ $(document).on("pagecontainerbeforechange", function (e, data)
   */  
 
 
-
+// this is not perfect, but is best so far
 $(document).on("pagecontainerbeforechange", function (e, data) {
     if (typeof data.toPage == "string" && data.options.direction == "back") {
         data.toPage = "#Login";
         data.options.transition = "slide";
         data.options.changeHash = false;
+        
+        $("#btnLogout" ).trigger( "click" );
     }
 });
 
