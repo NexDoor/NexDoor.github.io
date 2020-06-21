@@ -770,7 +770,9 @@ $(document).on("pagecontainerbeforechange", function (e, data)
 
    if (data.options.direction == "back")
    {
-        data.toPage = $("#Login"); 
+        //data.toPage = $("#Login");
+        e.preventDefault();
+         $.mobile.changePage( "#Login", { changeHash: true });
    }
 
 /*
