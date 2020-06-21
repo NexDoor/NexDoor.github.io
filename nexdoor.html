@@ -1084,7 +1084,23 @@ function PopulateDeviceSelectList(devices)
 
    };
 
-         
+
+
+
+  // this is where we can execute code for each page         
+ $(document).on("pagebeforeshow", function() 
+ {
+   //this will get the active page id (like #page1)
+   var currentPage = $.mobile.activePage.attr('id');
+   console.log(currentPage); 
+  
+  // if for some reason a user lands on a page without loging in, then redirect to login page
+  if (currentPage !== 'Login' && accessToken === '')
+  {
+    $.mobile.changePage( "#Login", { transition: "slide", changeHash: true });  
+  }
+     
+ }); 
         
         
         
@@ -1144,7 +1160,6 @@ function PopulateDeviceSelectList(devices)
         
         
         
-          
         
             
         
