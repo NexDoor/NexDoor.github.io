@@ -65,11 +65,37 @@ Demo here
 
 https://web.dev/codelab-make-installable/
 
+lblSelectedDevice
 -->
 
 
 
       <style>
+
+        
+        @media only screen and (min-width: 600px){
+            .ui-content {
+              max-width: 600px;
+              margin: 0 auto;
+            }
+
+            div[data-role="header"] {
+                  max-width: 600px;
+                  margin: 0 auto;
+            }    
+            
+    
+            div[data-role="footer"] {
+                  max-width: 600px;
+                  margin: 0 auto;
+            }    
+        }
+
+        #lblSelectedDevice {
+            color: green;
+            font-size: 100%;
+        }
+
          #myspan {
           font-family: 'IBM Plex Mono', monospace;
           background-color: #F7F4F3;
@@ -380,9 +406,6 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         <!-- Start of second page: #two -->
         <div data-role="page" id="two" data-theme="a">
         
-        <div class="ui-field-contain">
-            <label name="lblSelectedDevice" id="lblSelectedDevice">XXXXXXX</label>
-        </div>
 
  
         <div data-role="header"  data-theme="b" data-position="fixed">
@@ -392,8 +415,16 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         </div> <!-- /header -->       
 
 
+
         	<div role="main" class="ui-content">
+
+
             <form method = "post" action="#">
+
+                <div >
+                    <label name="lblSelectedDevice" id="lblSelectedDevice">XXXXXXX</label>
+                </div>
+
 
                 <!-- System Mode -->
                 <div class="containing-element">
