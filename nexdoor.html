@@ -89,6 +89,10 @@ lblSelectedDevice
                   max-width: 600px;
                   margin: 0 auto;
             }    
+        
+        	.ui-overlay-b{
+        		background: #333;
+        	}
         }
 
         #lblSelectedDevice {
@@ -303,19 +307,19 @@ lblSelectedDevice
             	<div class="ui-field-contain">
                    	<!-- Temperature -->
                        <label for = "lblTemp">Temperature</label>
-                       <input type = "text" name = "lblTemp" id = "lblTemp" readonly >
+                       <input type = "text" name = "lblTemp" id = "lblTemp" readonly  style="font-weight: bold;">
                 </div>
             
             	<div class="ui-field-contain">
             		<!-- humidity -->
                        	<label for = "lblHumid">Humidity</label>
-                        <input type = "text" name = "lblHumid" id = "lblHumid" readonly>
+                        <input type = "text" name = "lblHumid" id = "lblHumid" readonly style="font-weight: bold;">
                 </div>
             
             	<div class="ui-field-contain">
             		<!-- LstWeatherUpdate -->
                         <label for = "lblWeatherRefresh">Last Weather Refresh</label>
-                        <input type = "text" name = "lblWeatherRefresh" id = "lblWeatherRefresh" readonly >
+                        <input type = "text" name = "lblWeatherRefresh" id = "lblWeatherRefresh" readonly  style="font-weight: bold;">
                 </div>
             
 <!--
@@ -332,25 +336,25 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
             	<div class="ui-field-contain">
             		<!-- PM25 -->
                         <label for = "lblPM25">PM 2.5</label>
-                        <input type = "text" name = "lblPM25" id = "lblPM25" readonly value="Good" style="color:white;background:#0C0;">
+                        <input type = "text" name = "lblPM25" id = "lblPM25" readonly value="" style="font-weight: bold;">
                 </div>
             
             	<div class="ui-field-contain">
             		<!-- PM10 -->
                         <label for = "lblPM10">PM 10</label>
-                        <input type = "text" name = "lblPM10" id = "lblPM10" readonly value="Moderate" style="color:white;background:#FFFF00;">
+                        <input type = "text" name = "lblPM10" id = "lblPM10" readonly value="" style="font-weight: bold;">
                 </div>
             
             	<div class="ui-field-contain">
             		<!-- Ozone -->
                         <label for = "lblO3">Ozone</label>
-                        <input type = "text" name = "lblO3" id = "lbl)3" readonly value="Unhealthy" style="color:white;background:#FF0000;">
+                        <input type = "text" name = "lblO3" id = "lbl03" readonly value="" style="font-weight: bold;">
                 </div>
             
             	<div class="ui-field-contain">
             		<!-- LstAQIUpdate -->
                         <label for = "lblAQIRefresh">Last AQI Refresh</label>
-                        <input type = "text" name = "lblAQIRefresh" id = "lblAQIRefresh" readonly>
+                        <input type = "text" name = "lblAQIRefresh" id = "lblAQIRefresh" readonly style="font-weight: bold;">
             
                 </div>
             
@@ -362,7 +366,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
                 <div data-role="tabs" id="tabs">
                   <div data-role="navbar">
                     <ul>
-                      <li><a href="#status" data-ajax="false">Status</a></li>
+                      <li><a href="#status" data-ajax="false"  class="ui-btn-active ui-state-persist">Status</a></li>
                       <li><a href="#log" data-ajax="false">Log</a></li>
                      </ul>
                   </div>
@@ -414,6 +418,21 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         	<a href="#Home" data-icon="check" onclick="doSaveConfig()"  data-transition="slide" data-direction= "reverse">Save</a>
         </div> <!-- /header -->       
 
+                
+<!--       
+<div data-role="popup" id="popupConfigRequiredFlds" class="ui-content" style="max-width:280px" data-dismissible="false">
+    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
+<p>Please enter a value for ALL fields.</p>
+</div>
+-->
+
+            <div data-role="popup" id="dlg-Config-RequiredFlds" data-dismissible="false" style="max-width:400px;">
+                <div role="main" class="ui-content">
+                    <h3 class="mc-text-danger">Please Supply a Value for All Fields</h3>
+                    <div class="mc-text-center"><a href="#" id="dlg2closeBtn" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                </div>
+            </div>
+
 
 
         	<div role="main" class="ui-content">
@@ -436,21 +455,6 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
                 	</select>
                 </div>
                 </div>
-                
-<!--       
-<div data-role="popup" id="popupConfigRequiredFlds" class="ui-content" style="max-width:280px" data-dismissible="false">
-    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
-<p>Please enter a value for ALL fields.</p>
-</div>
--->
-
-            <div data-role="popup" id="dlg-Config-RequiredFlds" data-dismissible="false" style="max-width:400px;">
-                <div role="main" class="ui-content">
-                    <h3 class="mc-text-danger">Please Supply a Value for All Fields</h3>
-                    <div class="mc-text-center"><a href="#" id="dlg2closeBtn" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
-                </div>
-            </div>
-
 
        
        
@@ -515,7 +519,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 
                 <!-- Refresh Rate, in minutes -->
                 <div class="ui-field-contain">
-                   <label for = "selRefreshRate">Weather Stations (AZ)</label>
+                   <label for = "selRefreshRate">API Refresh Rate</label>
                    <select name = "selRefreshRate" id = "selRefreshRate"  class="selRefreshRate"  required>
             		<option>Select Number of Minutes Between API Calls...</option>
                     <option value="5">5 Minutes</option>
@@ -580,8 +584,8 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
                  <div class="ui-field-contain">
                 	<label for="cbDebugMode">Debug Mode</label>
                 	<select name="cbDebugMode" id="cbDebugMode" data-role="slider" required>
-                		<option value="false">Off</option>
-                		<option value="true">On</option>
+                		<option value="0">Off</option>
+                		<option value="1">On</option>
                 	</select>
                 </div>
                 </div>
@@ -1058,14 +1062,15 @@ function PopulateDeviceSelectList(devices)
     function doSaveConfig()
     {
        
-       var squareFeetBuildingSize = parseInt($("#spinSqFeet").val(), 10); 
+        var squareFeetBuildingSize = parseInt($("#spinSqFeet").val(), 10); 
         var numberOfNexDoorFans = parseInt($("#spinNumFans").val(), 10);
         var CallWebhookEveryMinutes = parseInt($("#selRefreshRate").val(), 10);
         var localTimeZoneOffset = parseInt($("#selTimeZoneOffset").val(), 10);
         var observeDST = parseInt($("#cbObserveDST").val(), 10);
         var WeatherStation = $("#selWeatherSta").val();
         var zipcode = $("#txtZipcode").val();
-        var debugMode = $("#cbDebugMode").val();
+        var debugMode = parseInt($("#cbDebugMode").val(), 10);
+        //var debugMode = ($("#cbDebugMode").val() === 'false') ? false : true;
         var DefaultFanSpeed = parseInt($("input[name='rbDefaultFanSpeed']:checked").val(), 10);
         var SystemMode = parseInt($("#cbDeviceMode").val(), 10);
 
@@ -1083,6 +1088,8 @@ function PopulateDeviceSelectList(devices)
                         SystemMode: SystemMode
                         };
         var myJSON = JSON.stringify(configObj);
+
+
 
     // need to chack for requiered fields here.. if any are blank, then 
     //  event.preventDefault();
@@ -1130,7 +1137,24 @@ function PopulateDeviceSelectList(devices)
   {
     $.mobile.changePage( "#Login", { transition: "slide", changeHash: true });  
   }
-     
+  
+  /*
+  if (currentPage == 'two')
+  {
+      $("#selWeatherSta").selectmenu('refresh');
+      $("#selRefreshRate").selectmenu('refresh');
+      $("#selTimeZoneOffset").selectmenu('refresh');
+      
+      $("#cbDeviceMode").checkboxradio( "refresh" );
+      $("#cbDebugMode").checkboxradio( "refresh" );
+      $("#cbObserveDST").checkboxradio( "refresh" );
+      $("#rbDefaultFanSpeed").checkboxradio( "refresh" );
+      
+
+      
+  }
+    
+    */ 
  }); 
         
         
@@ -1169,12 +1193,34 @@ function PopulateDeviceSelectList(devices)
             particle.getEventStream({ deviceId: DeviceId, name: "device-config", auth: accessToken}).then(function(stream) {
               stream.on('event', function(feed) {
                 // insert code to do something with feed.data
-                $("#DeviceStatus").html("Device Config: " + feed.data);
+               var myObj = JSON.parse(feed.data);
+                console.log(myObj.Event);
+                
+                switch(myObj.Event) {
+                                      case "GetVars":
+                                        doGetVars(myObj);
+                                        break;
+                                      case "GetConfigs":
+                                        doGetConfigs(myObj);
+                                        break;
+                                      case "GetFanState":
+                                        doGeFanState(myObj);
+                                        break;
+                                      default:
+                                        // code block
+                                    }
+              //$("#DeviceStatus").html("Device Config: " + feed.data);
                 //window.alert("Message from Device: "+feed.data);
               });
             });
         
-              
+
+                // signal device to se3nd current status/values
+                callParticle_Func("GetCurrentFanState","0");
+                callParticle_Func("GetCurrentVars","0");
+                callParticle_Func("GetCurrentConfigs","0");
+                
+                
             
           }
           /*
@@ -1188,8 +1234,227 @@ function PopulateDeviceSelectList(devices)
             $("#DeviceStatus").css({ 'color': 'red', 'font-size': '150%' });
         }
           */
+
+
+
+function doGeFanState(myObj)
+{
+    //console.log(myObj.FanState);
+    
+     // fan button
+       $("#cb1").val(myObj.FanState).slider("refresh");
+
+
+   // baffle button
+       $("#cb2").val(myObj.BafflePos).slider("refresh");
+   
+   
+   // speed button
+     if (myObj.CurrentFanSpeed === 255) {
+    
+            $( "#rbFanSpeed1" ).prop( "checked", false ).checkboxradio( "refresh" );
+            $( "#rbFanSpeed2" ).prop( "checked", false ).checkboxradio( "refresh" );
+            $( "#rbFanSpeed3" ).prop( "checked", true ).checkboxradio( "refresh" );
+        }
+        else if (myObj.CurrentFanSpeed === 169) {
+            $( "#rbFanSpeed1" ).prop( "checked", false ).checkboxradio( "refresh" );
+            $( "#rbFanSpeed2" ).prop( "checked", true ).checkboxradio( "refresh" );
+            $( "#rbFanSpeed3" ).prop( "checked", false ).checkboxradio( "refresh" );
+        } 
+        else  {
+            $( "#rbFanSpeed1" ).prop( "checked", true ).checkboxradio( "refresh" );
+            $( "#rbFanSpeed2" ).prop( "checked", false ).checkboxradio( "refresh" );
+            $( "#rbFanSpeed3" ).prop( "checked", false ).checkboxradio( "refresh" );
+        } 
+   
+}
         
         
+function doGetVars(myObj)
+{
+    //console.log(myObj);
+    
+    // weather data
+    let date = new Date(myObj.LastWeatherUpdate);
+    $('#lblTemp').val(myObj.CurrentTemp+' '+String.fromCharCode(176)+'F');
+    $('#lblHumid').val(myObj.CurrentHumidity+' %');
+    $('#lblWeatherRefresh').val(date.toLocaleString());
+
+    // weather data
+    date = new Date(myObj.LastAQIUpdate);
+    $('#lblPM25').val(myObj.AQI_PM25);
+    $('#lblPM10').val(myObj.AQI_PM10);
+    $('#lbl03').val(myObj.AQI_03);
+    $('#lblAQIRefresh').val(date.toLocaleString());
+
+
+
+    let backColor = '#00e400';
+    let fontColor = 'black';
+    
+    // color for PM25
+    switch(myObj.AQI_PM25) {
+      case 'Good':
+        backColor = '#00e400';
+        fontColor = 'black';
+        break;
+      case 'Moderate':
+        backColor = 'yellow';
+        fontColor = 'black';
+        break;
+      case 'Unhealthy for Sensitive Groups':
+        backColor = '#ff7e00';
+        fontColor = 'white';
+        break;
+      case 'Unhealthy':
+        backColor = 'red';
+        fontColor = 'white';
+        break;
+      case 'Very Unhealthy':
+        backColor = '#8f3f97';
+        fontColor = 'white';
+        break;
+      case 'Hazzardous':
+        backColor = '#7e0023';
+        fontColor = 'white';
+        break;
+    }
+
+    $("#lblPM25").css("background-color",backColor);
+    $("#lblPM25").css("color",fontColor);
+
+
+// color for PM10
+    switch(myObj.AQI_PM10) {
+      case 'Good':
+        backColor = '#00e400';
+        fontColor = 'black';
+        break;
+      case 'Moderate':
+        backColor = 'yellow';
+        fontColor = 'black';
+        break;
+      case 'Unhealthy for Sensitive Groups':
+        backColor = '#ff7e00';
+        fontColor = 'white';
+        break;
+      case 'Unhealthy':
+        backColor = 'red';
+        fontColor = 'white';
+        break;
+      case 'Very Unhealthy':
+        backColor = '#8f3f97';
+        fontColor = 'white';
+        break;
+      case 'Hazzardous':
+        backColor = '#7e0023';
+        fontColor = 'white';
+        break;
+    }
+
+    $("#lblPM10").css("background-color",backColor);
+    $("#lblPM10").css("color",fontColor);
+
+
+// color for O3
+    switch(myObj.AQI_PM25) {
+      case 'Good':
+        backColor = '#00e400';
+        fontColor = 'black';
+        break;
+      case 'Moderate':
+        backColor = 'yellow';
+        fontColor = 'black';
+        break;
+      case 'Unhealthy for Sensitive Groups':
+        backColor = '#ff7e00';
+        fontColor = 'white';
+        break;
+      case 'Unhealthy':
+        backColor = 'red';
+        fontColor = 'white';
+        break;
+      case 'Very Unhealthy':
+        backColor = '#8f3f97';
+        fontColor = 'white';
+        break;
+      case 'Hazzardous':
+        backColor = '#7e0023';
+        fontColor = 'white';
+        break;
+    }
+
+
+    $("#lbl03").css("background-color",backColor);
+    $("#lbl03").css("color",fontColor);
+    
+}
+
+
+function doGetConfigs(myObj)
+{
+    console.log('BEGIN');
+    console.log(myObj);
+  var curNode = "0";
+  
+try {
+     // need to add this to the API
+     // device Mode button
+     //  $("#cbDeviceMode").slider().val(myObj.DeviceMode).slider("refresh");
+
+     // debug Mode button
+     curMode = myObj.debugMode === true ? "1" : "0";
+      $("#cbDebugMode").slider().val(curMode).slider("refresh");
+
+     // observe DST button
+     curMode = myObj.observeDST === true ? "1" : "0";
+      $("#cbObserveDST").slider().val(curMode).slider("refresh");
+
+
+     // Default Fan Speed button
+     if (myObj.DefaultFanSpeed === 255) {
+    
+            $( "#rbDefaultFanSpeed1" ).checkboxradio().prop( "checked", false ).checkboxradio( "refresh" );
+            $( "#rbDefaultFanSpeed2" ).checkboxradio().prop( "checked", false ).checkboxradio( "refresh" );
+            $( "#rbDefaultFanSpeed3" ).checkboxradio().prop( "checked", true ).checkboxradio( "refresh" );
+        }
+        else if (myObj.DefaultFanSpeed === 169) {
+            $( "#rbDefaultFanSpeed1" ).checkboxradio().prop( "checked", false ).checkboxradio( "refresh" );
+            $( "#rbDefaultFanSpeed2" ).checkboxradio().prop( "checked", true ).checkboxradio( "refresh" );
+            $( "#rbDefaultFanSpeed3" ).checkboxradio().prop( "checked", false ).checkboxradio( "refresh" );
+        } 
+        else  {
+            $( "#rbDefaultFanSpeed1" ).checkboxradio().prop( "checked", true ).checkboxradio( "refresh" );
+            $( "#rbDefaultFanSpeed2" ).checkboxradio().prop( "checked", false ).checkboxradio( "refresh" );
+            $( "#rbDefaultFanSpeed3" ).checkboxradio().prop( "checked", false ).checkboxradio( "refresh" );
+        } 
+
+
+    // ZipCode box
+     $('#txtZipcode').val(myObj.zipcode);
+
+    // Num Fans
+     $('#spinNumFans').val(myObj.numberOfNexDoorFans);
+
+    // Sq Feet
+     $('#spinSqFeet').val(myObj.squareFeetBuildingSize);
+
+
+    $("#selWeatherSta").selectmenu().val(myObj.WeatherStation).selectmenu('refresh');
+    $("#selRefreshRate").selectmenu().val(myObj.CallWebhookEveryMinutes).selectmenu('refresh');
+    $("#selTimeZoneOffset").selectmenu().val(myObj.localTimeZoneOffset).selectmenu('refresh');
+    
+    
+    
+}
+
+catch(err) {
+  console.log(err.message);
+}
+    console.log('END');
+
+}
+    
         
         
             
