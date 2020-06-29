@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+
+<!--
+  NEED TO CLEAN UP CODE
+  RENAME VARS FOR READABILITY
+  ADD TRY CATCH AND LOG ERRORS TO STATUS TAB / OR DIALOG
+  
+-->
+
    <head>
       <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         
@@ -254,7 +262,7 @@ lblSelectedDevice
 
 
                 <div class="ui-field-contain">
-                    <label name="DeviceStatus" id="DeviceStatus">Device Status</label>
+                    <label name="DeviceName" id="DeviceName">XXXXXXXXXX</label>
                 </div>
 
 
@@ -723,8 +731,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 /////////////////////////////////
     $('#two').on('click', function() {
     
-    console.log('Config Checked');
-    
+
      if ( $("#selDevice")[0].selectedIndex == 0)
        {
          console.log('No Device Selected');
@@ -1130,7 +1137,7 @@ function PopulateDeviceSelectList(devices)
  {
    //this will get the active page id (like #page1)
    var currentPage = $.mobile.activePage.attr('id');
-   console.log(currentPage); 
+   //console.log(currentPage); 
   
   // if for some reason a user lands on a page without loging in, then redirect to login page
   if (currentPage !== 'Login' && accessToken === '')
@@ -1177,15 +1184,15 @@ function PopulateDeviceSelectList(devices)
             $("#dcalc *").prop('disabled',true);
         	$("#dcalc").hide();
 
-            $("#DeviceStatus").html(DeviceName);
-            $("#DeviceStatus").css({ 'color': 'black', 'font-size': '100%' });
+            $("#DeviceName").html(DeviceName);
+            $("#DeviceName").css({ 'color': 'black', 'font-size': '100%' });
           } 
           else if (obj.selectedIndex > 0)
           {
             $("#dcalc *").prop('disabled',false);
         	$("#dcalc").show();
-            $("#DeviceStatus").html("Device Ready");
-            $("#DeviceStatus").css({ 'color': 'green', 'font-size': '100%' });
+            $("#DeviceName").html(DeviceName);
+            $("#DeviceName").css({ 'color': 'green', 'font-size': '100%' });
             
              $.mobile.changePage( "#Home", { transition: "slide", changeHash: true });
             
@@ -1194,7 +1201,7 @@ function PopulateDeviceSelectList(devices)
               stream.on('event', function(feed) {
                 // insert code to do something with feed.data
                var myObj = JSON.parse(feed.data);
-                console.log(myObj.Event);
+                //console.log(myObj.Event);
                 
                 switch(myObj.Event) {
                                       case "GetVars":
@@ -1209,8 +1216,6 @@ function PopulateDeviceSelectList(devices)
                                       default:
                                         // code block
                                     }
-              //$("#DeviceStatus").html("Device Config: " + feed.data);
-                //window.alert("Message from Device: "+feed.data);
               });
             });
         
@@ -1230,8 +1235,8 @@ function PopulateDeviceSelectList(devices)
             $("#dcalc *").prop('disabled',true);
         	$("#dcalc").hide();
            //$('#cb1').button('disable');	
-            $("#DeviceStatus").html("Device Offline");
-            $("#DeviceStatus").css({ 'color': 'red', 'font-size': '150%' });
+            $("#DeviceName").html("Device Offline");
+            $("#DeviceName").css({ 'color': 'red', 'font-size': '150%' });
         }
           */
 
@@ -1393,8 +1398,6 @@ function doGetVars(myObj)
 
 function doGetConfigs(myObj)
 {
-    console.log('BEGIN');
-    console.log(myObj);
   var curNode = "0";
   
 try {
@@ -1451,7 +1454,6 @@ try {
 catch(err) {
   console.log(err.message);
 }
-    console.log('END');
 
 }
     
