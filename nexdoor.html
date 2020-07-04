@@ -1207,7 +1207,6 @@ function PopulateDeviceSelectList(devices)
             particle.getEventStream({ deviceId: DeviceId, name: "device-config", auth: accessToken}).then(function(stream) {
               // store a referrence to the event stream so we can abort when we change devices alter.
               eventStream = stream;
-              console.log(eventStream);
               eventStream.on('event', function(feed) {
                 // insert code to do something with feed.data
                var myObj = JSON.parse(feed.data);
