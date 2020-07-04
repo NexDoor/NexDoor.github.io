@@ -625,6 +625,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         var DeviceId = '';
         var DeviceName = '';
         var wasClosedDialog = false;
+        var eventStream;
 
 /////////////////////////////////
         
@@ -1195,10 +1196,19 @@ function PopulateDeviceSelectList(devices)
             $("#DeviceName").css({ 'color': 'green', 'font-size': '100%' });
             
              $.mobile.changePage( "#Home", { transition: "slide", changeHash: true });
-            
+             
+             // abort any streams we may have been listening too prior to channging devices
+            if (typeof eventStream !== 'undefined')
+            {
+              eventStream.abort();
+            }
+
             // this captures the events for the selected device
             particle.getEventStream({ deviceId: DeviceId, name: "device-config", auth: accessToken}).then(function(stream) {
-              stream.on('event', function(feed) {
+              // store a referrence to the event stream so we can abort when we change devices alter.
+              eventStream = stream;
+              console.log(eventStream);
+              eventStream.on('event', function(feed) {
                 // insert code to do something with feed.data
                var myObj = JSON.parse(feed.data);
                 //console.log(myObj.Event);
