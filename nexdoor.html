@@ -217,8 +217,8 @@ lblSelectedDevice
      
             </form>
          </div>
-        	<div data-role="footer" data-position="fixed">
-        		<h4>NexDoor</h4>
+        	<div data-role="footer"  data-theme="b"  data-position="fixed">
+        		<h1>NexDoor</h1>
         	</div><!-- /footer -->
          
       </div> <!-- Device Selection page  -->
@@ -253,16 +253,15 @@ lblSelectedDevice
         </div> <!-- /header -->       
 
       
+        <div class="ui-field-contain">
+            <a href="#SelectDevice" data-role="button"  id="DeviceName">xxxxxx</a>
+        </div>
       
       
          <div data-role = "main" class = "ui-content">
             <form method = "post" action="#">
                
 
-
-        <div class="ui-field-contain">
-            <a href="#SelectDevice" data-role="button"  id="DeviceName">xxxxxx</a>
-        </div>
 
 
         
@@ -398,9 +397,11 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
             </form>
          </div>
 
-        	<div data-role="footer" data-position="fixed">
-        		<h4>NexDoor</h4>
-        	</div><!-- /footer -->
+
+        <div data-role="footer" id="btnRefreshPage" data-theme="b"  data-position="fixed">
+        	<a href="#" id="refreshPageVars" data-icon="refresh">Refresh Page</a>
+        </div> <!-- /footer -->       
+
          
       </div> <!-- home page  -->
       
@@ -607,8 +608,8 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
             
         	</div><!-- /content -->
         
-        	<div data-role="footer" data-position="fixed">
-        		<h4>NexDoor</h4>
+        	<div data-role="footer" data-theme="b"  data-position="fixed">
+        		<h1>NexDoor</h1>
         	</div><!-- /footer -->
         </div><!-- /page two -->      
 
@@ -773,8 +774,8 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         particle.login({username: $("#txt-email").val(), password: $("#txt-password").val()}).then(
           function(data) {
             accessToken = data.body.access_token;
-            // we are now handling the list devices in the drop dpwn, so after login, go directly to device page
-            ListDevices(accessToken)
+            // we are now handling the list devices in the drop down, so after login, go directly to device page
+            //ListDevices(accessToken)
             $.mobile.changePage( "#SelectDevice", { transition: "slide", changeHash: true });
 
           },
@@ -786,6 +787,8 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
      
     });
     
+
+
 
 
 
@@ -833,6 +836,14 @@ $("#btnLogout2").on('click', function()
        $("#btnLogout").trigger("click");
 
     });
+    
+
+$("#btnRefreshPage").on('click', function()
+    {
+        callParticle_Func("GetCurrentFanState","0");
+        callParticle_Func("GetCurrentVars","0");
+    });
+    
     
 
 /*
@@ -1019,6 +1030,22 @@ $("#refreshDevice").on('click', function(){
 });
 
 
+/*
+// refresh the device select list when user changes back to select device page   
+$("#DeviceName").on('click', function(){
+    
+   ListDevices(accessToken);
+   console.log('Refresh Device');
+   $.mobile.changePage( "#SelectDevice", { transition: "slide", changeHash: true });
+});
+
+*/
+
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
 
 // list devices
 function ListDevices(accessToken)
@@ -1143,6 +1170,12 @@ function PopulateDeviceSelectList(devices)
   if (currentPage !== 'Login' && accessToken === '')
   {
     $.mobile.changePage( "#Login", { transition: "slide", changeHash: true });  
+  }
+  
+  if (currentPage == 'SelectDevice') 
+  {
+    ListDevices(accessToken);
+    console.log('List Deveices Called');
   }
   
   /*
