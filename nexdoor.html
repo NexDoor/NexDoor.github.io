@@ -368,7 +368,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
                 <div data-role="tabs" id="tabs">
                   <div data-role="navbar">
                     <ul>
-                      <li><a href="#status" data-ajax="false"  class="ui-btn-active ui-state-persist">Status</a></li>
+                      <li><a href="#status" id="statusTab" data-ajax="false"  class="ui-btn-active ui-state-persist">Status</a></li>
                       <li><a href="#log" data-ajax="false">Log</a></li>
                      </ul>
                   </div>
@@ -1166,14 +1166,20 @@ function PopulateDeviceSelectList(devices)
   // if for some reason a user lands on a page without loging in, then redirect to login page
   if (currentPage !== 'Login' && accessToken === '')
   {
-    $.mobile.changePage( "#Login", { transition: "slide", changeHash: true });  
+    $.mobile.changePage( "#Login", { transition: "slide", changeHash: true }); 
+    return;
   }
   
   if (currentPage == 'SelectDevice') 
   {
     ListDevices(accessToken);
-    console.log('List Deveices Called');
   }
+  
+  if (currentPage == 'Home') 
+  {
+      $("#statusTab").trigger("click");
+  }
+
   
   /*
   if (currentPage == 'two')
