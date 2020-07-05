@@ -253,20 +253,16 @@ lblSelectedDevice
         </div> <!-- /header -->       
 
       
+      
+         <div data-role = "main" class = "ui-content">
+            <form method = "post" action="#">
+
+        <div id="dcalc" name="dcalc" class="dcalc">
+                    
         <div class="ui-field-contain">
             <a href="#SelectDevice" data-role="button"  id="DeviceName">xxxxxx</a>
         </div>
       
-      
-         <div data-role = "main" class = "ui-content">
-            <form method = "post" action="#">
-               
-
-
-
-        
-        <div id="dcalc" name="dcalc" class="dcalc">
-                    
                    
                     
 
@@ -838,6 +834,7 @@ $("#btnLogout2").on('click', function()
     });
     
 
+// the user cliecked the refresh page button in the footer of the main page
 $("#btnRefreshPage").on('click', function()
     {
         callParticle_Func("GetCurrentFanState","0");
