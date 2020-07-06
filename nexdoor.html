@@ -130,6 +130,11 @@ lblSelectedDevice
           overflow: scroll;
         }
 
+
+        .mc-text-danger  {
+            color:red;
+        }
+        
       </style>
       
       
@@ -174,9 +179,25 @@ lblSelectedDevice
                 <div role="main" class="ui-content">
                     <h3 class="mc-text-danger">Login Failed</h3>
                     <p>Did you enter the right credentials?</p>
-                    <div class="mc-text-center"><a href="#" id="dlg0closeBtn" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                    <div class="mc-text-center"><a href="#" id="dlg0closeBtn" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a>
+                    </div>
                 </div>
             </div>
+            
+            
+         
+            <div data-role="popup" id="dlg-installApp" data-dismissible="false" style="max-width:400px;">
+                <div role="main" class="ui-content">
+                    <h3>Install to Desktop?</h3>
+                    <p>For a better experience, install the app to your desktop.?</p>
+                        <a href="#" id="btnInstall" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Install</a>
+                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Not Now</a>
+                </div>
+            </div>
+            
+       
+        
+            
         </div><!-- /content -->
      </div>
     <!-- End Login Page -->
@@ -622,6 +643,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         var DeviceName = '';
         var wasClosedDialog = false;
         var eventStream;
+        let deferredPrompt;
 
 /////////////////////////////////
         
@@ -786,8 +808,6 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
 
 
 
-
-
 // Close the app...
 // this is not working.. can only close the window that the app opened...
 // need to figure out how to exit the app!
@@ -800,6 +820,19 @@ $("#btnClose").on('click', function()
 
 
     });
+
+
+$("#btnInstall").on('click', function()
+    {
+
+
+
+    });
+
+
+            
+
+
 
 // Logout button handler
 $("#btnLogout").on('click', function()
