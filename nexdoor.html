@@ -2,7 +2,7 @@
 <html>
 
 <!--
-v4
+V5
   NEED TO CLEAN UP CODE
   RENAME VARS FOR READABILITY
   ADD TRY CATCH AND LOG ERRORS TO STATUS TAB / OR DIALOG
@@ -191,7 +191,7 @@ lblSelectedDevice
                 <div role="main" class="ui-content">
                     <h3>Install to Desktop?</h3>
                     <p>For a better experience, install the app to your desktop.?</p>
-                        <a href="#" onclick="dotest()" id="btnInstall" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Install</a>
+                        <a href="#" id="btnInstall" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Install</a>
                         <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Not Now</a>
                 </div>
             </div>
@@ -645,7 +645,7 @@ Hazzardous   style="background-color:#660000;color:#FFF;"
         var wasClosedDialog = false;
         var eventStream;
         let deferredPrompt;
-
+        const addBtn = document.getElementById('btnInstall');
 /////////////////////////////////
         
 
@@ -1573,62 +1573,19 @@ function SetFullScreen()
         </script>
 
   <script>
-  // Check to make sure the browser supports service workers
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('https://nexdoor.github.io/service-worker.js')
-    .then(() => {
-      console.log('Service worker registered');
-    })
-    .catch(err => {
-      console.log('Service worker registration failed: ' + err);
-    });
-}
-
-
-
-
 
       
-      
-function dotest()
-    {
-
-     //window.close();
-     // the following line should work in PhoneGap
-        navigator.app.exitApp();
-
-  // hide our user interface that shows our A2HS button
-    // close button or dialog here
-    // Show the prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the A2HS prompt');
-        } else {
-          console.log('User dismissed the A2HS prompt');
-        }
-        deferredPrompt = null;
-    };
-
-
-      
-
-
 window.addEventListener('beforeinstallprompt', (e) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
   // Stash the event so it can be triggered later.
   deferredPrompt = e;
   // Update UI to notify the user they can add to home screen
-
   $("#dlg-installApp" ).popup( "open" );
 
-/*
   addBtn.addEventListener('click', (e) => {
     // hide our user interface that shows our A2HS button
-    // close button or dialog here
+    //addBtn.style.display = 'none';
     // Show the prompt
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt
@@ -1640,10 +1597,26 @@ window.addEventListener('beforeinstallprompt', (e) => {
         }
         deferredPrompt = null;
       });
-      */
-      
   });
 });
+
+
+     
+
+  // Check to make sure the browser supports service workers
+if ('serviceWorker' in navigator) 
+{
+  navigator.serviceWorker
+    .register('https://nexdoor.github.io/service-worker.js')
+    .then(() => 
+    {
+      console.log('Service worker registered');
+    })
+    .catch(err => 
+    {
+      console.log('Service worker registration failed: ' + err);
+    });
+}
 
 </script>
 
