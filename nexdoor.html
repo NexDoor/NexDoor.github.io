@@ -165,6 +165,7 @@ lblSelectedDevice
             -->
             <a href="#" id="btnLogin" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</a>
             <a href="#" id="add-button" class="add-button ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Add to home screen</a>
+ 
 <!--
 <button class="add-button">Add to home screen</button>            
 -->
@@ -1589,8 +1590,11 @@ window.addEventListener('beforeinstallprompt', (e) => {
   addBtn.style.display = 'block';
 
   addBtn.addEventListener('click', (e) => {
+    
     // hide our user interface that shows our A2HS button
     addBtn.style.display = 'none';
+    addBtn.remove();
+    
     // Show the prompt
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt
