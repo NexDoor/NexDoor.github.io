@@ -1592,13 +1592,11 @@ function SetFullScreen()
 
         </script>
 
-
-
   <script>
   // Check to make sure the browser supports service workers
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/service-worker.js')
+    .register('https://nexdoor.github.io/service-worker.js')
     .then(() => {
       console.log('Service worker registered');
     })
@@ -1606,7 +1604,10 @@ if ('serviceWorker' in navigator) {
       console.log('Service worker registration failed: ' + err);
     });
 }
-</script
+</script>
+
+
+
       
    </body>
 </html>
