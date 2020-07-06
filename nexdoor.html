@@ -194,10 +194,9 @@ lblSelectedDevice
          
             <div data-role="popup" id="dlg-installApp" data-dismissible="false" style="max-width:400px;">
                 <div role="main" class="ui-content">
-                    <h3>Install to Desktop?</h3>
-                    <p>For a better experience, install the app to your desktop.?</p>
-                        <a href="#" id="btnInstall" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Install</a>
-                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Not Now</a>
+                    <h3>Good Choice!</h3>
+                    <p>After the install is complete, please close the browser, and load the app from the desktop.</p>
+                         <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">OK</a>
                 </div>
             </div>
             
@@ -1601,6 +1600,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted the A2HS prompt');
+          $("#dlg-installApp" ).popup( "open" );
         } else {
           console.log('User dismissed the A2HS prompt');
         }
