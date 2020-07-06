@@ -2,7 +2,6 @@
 <html>
 
 <!--
-V5
   NEED TO CLEAN UP CODE
   RENAME VARS FOR READABILITY
   ADD TRY CATCH AND LOG ERRORS TO STATUS TAB / OR DIALOG
@@ -1583,6 +1582,18 @@ window.addEventListener('beforeinstallprompt', (e) => {
   // Update UI to notify the user they can add to home screen
   $("#dlg-installApp" ).popup( "open" );
 
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+
+/*
   addBtn.addEventListener('click', (e) => {
     // hide our user interface that shows our A2HS button
     //addBtn.style.display = 'none';
@@ -1597,7 +1608,9 @@ window.addEventListener('beforeinstallprompt', (e) => {
         }
         deferredPrompt = null;
       });
-  });
+  
+      
+  });*/
 });
 
 
